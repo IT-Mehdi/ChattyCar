@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/ChattyCar.iml" filepath="$PROJECT_DIR$/.idea/ChattyCar.iml" />
+      <module fileurl="file://$PROJECT_DIR$/drivers/drivers.iml" filepath="$PROJECT_DIR$/drivers/drivers.iml" />
+      <module fileurl="file://$PROJECT_DIR$/eureka_Server/eureka_Server.iml" filepath="$PROJECT_DIR$/eureka_Server/eureka_Server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/notification/notification.iml" filepath="$PROJECT_DIR$/notification/notification.iml" />
+    </modules>
+  </component>
+</project>

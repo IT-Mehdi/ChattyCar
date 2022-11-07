@@ -3,9 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/ChattyCar.iml" filepath="$PROJECT_DIR$/.idea/ChattyCar.iml" />
-      <module fileurl="file://$PROJECT_DIR$/drivers/drivers.iml" filepath="$PROJECT_DIR$/drivers/drivers.iml" />
       <module fileurl="file://$PROJECT_DIR$/eureka_Server/eureka_Server.iml" filepath="$PROJECT_DIR$/eureka_Server/eureka_Server.iml" />
       <module fileurl="file://$PROJECT_DIR$/notification/notification.iml" filepath="$PROJECT_DIR$/notification/notification.iml" />
+      <module fileurl="file://$PROJECT_DIR$/drivers/trips.iml" filepath="$PROJECT_DIR$/drivers/trips.iml" />
     </modules>
   </component>
 </project>

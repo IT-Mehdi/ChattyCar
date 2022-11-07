@@ -1,13 +1,13 @@
-package be.vinci.ipl.chattycar.drivers;
+package be.vinci.ipl.chattycar.trips;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class DriversApplication {
+public class TripsApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(DriversApplication.class, args);
+        SpringApplication.run(TripsApplication.class, args);
     }
 
 }

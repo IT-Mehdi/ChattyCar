@@ -1,10 +1,10 @@
-package be.vinci.ipl.chattycar.notification;
+package be.vinci.ipl.eureka_server;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class NotificationApplicationTests {
+class EurekaServerApplicationTests {
 
     @Test
     void contextLoads() {

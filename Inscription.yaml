@@ -1,0 +1,161 @@
+openapi: 3.0.3
+info:
+  title: Service Inscription API
+  description: Service Inscription API
+  version: 1.0.0
+servers:
+  - url: 'http://localhost:9003'
+paths:
+  /inscriptions/{id}/passengers:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          example: 38
+        description: ID of the trip
+    get:
+      summary: Get all inscriptions of a trip
+      responses:
+        404:
+          description: No trip found with this ID
+        200:
+          description: Sent trip's inscriptions
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/inscription'
+    delete:
+      summary: Delete all inscriptions of a trip
+      security:
+        - authentication:
+            - driver
+      responses:
+        401:
+          description: Missing authentication
+        403:
+          description: Not identified as the corresponding user
+        404:
+          description: No trip found with this ID
+        201:
+          description: Trip's inscriptions are deleted
+  /inscriptions/{id}/trips:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          example: 38
+        description: ID of the passenger
+    get:
+        summary: Get all trips of a passenger
+        responses:
+            404:
+              description: No passenger found with this ID
+            200:
+              description: Sent passenger's trips
+              content:
+                'application/json':
+                  schema:
+                    $ref: '#/components/schemas/inscription'
+
+  /inscriptions/{trip}/passengers/{passenger}:
+    parameters:
+      - name: trip
+        in: path
+        required: true
+        schema:
+          type: integer
+          example: 38
+        description: ID of the trip
+      - name: passenger
+        in: path
+        required: true
+        schema:
+          type: integer
+          example: 12
+        description: ID of the passenger
+    post:
+      summary: Create inscription
+      security:
+        - authentication:
+            - driver
+      responses:
+        '201':
+          description: inscription created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inscription'
+        '400':
+          description: bad request
+        '401':
+          description: unauthorized
+        '403':
+          description: forbidden
+        '500':
+          description: internal server error
+    get:
+      summary: Get inscription
+      responses:
+        404:
+          description: No inscription found with this ID
+        200:
+          description: Sent inscription
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/inscription'
+
+    delete:
+      summary: Delete inscription
+      security:
+        - authentication:
+            - driver
+      responses:
+        401:
+          description: Missing authentication
+        403:
+          description: Not identified as the corresponding user
+        404:
+          description: No inscription found with this ID
+        201:
+          description: Inscription is deleted
+
+    put:
+        summary: Update inscription
+        security:
+            - authentication:
+                - driver
+        responses:
+            401:
+              description: Missing authentication
+            403:
+              description: Not identified as the corresponding user
+            404:
+              description: No inscription found with this ID
+            201:
+              description: Inscription is updated
+
+
+components:
+  schemas:
+    inscription:
+      type: object
+      properties:
+        trip_id:
+          type: integer
+        passenger_id:
+          type: integer
+        status:
+          type: string
+          enum:
+            - pending
+            - accepted
+            - refused
+      example:
+        trip_id: 38
+        passenger_id: 2
+        status: pending

@@ -4,14 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a10ba822-f218-4ab3-a0e0-7d8d6445471d" name="Changes" comment="Users micro + yaml?&#10;I hope i don't break anything">
-      <change afterPath="$PROJECT_DIR$/searchTrips/ChattyCar-searchTrips.yaml" afterDir="false" />
+    <list default="true" id="a10ba822-f218-4ab3-a0e0-7d8d6445471d" name="Changes" comment="Notifications microservice + yaml">
+      <change afterPath="$PROJECT_DIR$/notifications/ChattyCar-notifications.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/ChattyCar-Users-service.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/users/ChattyCar-users-service.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,6 +57,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="NotificationsApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="notifications" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="be.vinci.ipl.notifications.NotificationsApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="SearchTripsApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="searchTrips" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="be.vinci.ipl.searchtrips.SearchTripsApplication" />
@@ -92,7 +98,7 @@
       <option name="generatorPath" value="https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/5.0.0/openapi-generator-cli-5.0.0.jar" />
       <option name="jdkPath" value="" />
       <option name="language" value="java" />
-      <option name="specificationPath" value="C:\Users\zixme\IdeaProjects\ChattyCar\searchTrips\ChattyCar-searchTrips.yaml" />
+      <option name="specificationPath" value="C:\Users\zixme\IdeaProjects\ChattyCar\notifications\ChattyCar-notifications.yaml" />
       <method v="2" />
     </configuration>
   </component>
@@ -105,7 +111,8 @@
       <option name="presentableId" value="Default" />
       <updated>1667831987487</updated>
       <workItem from="1667831990770" duration="393000" />
-      <workItem from="1668246716316" duration="2740000" />
+      <workItem from="1668246716316" duration="2845000" />
+      <workItem from="1668274493669" duration="891000" />
     </task>
     <task id="LOCAL-00001" summary="Users micro + yaml?&#10;I hope i don't break anything">
       <created>1668247896779</created>
@@ -114,7 +121,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668247896780</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="SearchTripls micro&#10; Yaml in progress">
+      <created>1668249801933</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1668249801933</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -133,6 +147,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Users micro + yaml?&#10;I hope i don't break anything" />
-    <option name="LAST_COMMIT_MESSAGE" value="Users micro + yaml?&#10;I hope i don't break anything" />
+    <MESSAGE value="SearchTripls micro&#10; Yaml in progress" />
+    <MESSAGE value="Notifications microservice + yaml" />
+    <option name="LAST_COMMIT_MESSAGE" value="Notifications microservice + yaml" />
   </component>
 </project>

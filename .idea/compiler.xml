@@ -8,8 +8,8 @@
         <outputRelativeToContentRoot value="true" />
         <module name="eureka_server" />
         <module name="trips" />
-        <module name="users" />
         <module name="searchTrips" />
+        <module name="users" />
         <module name="notifications" />
       </profile>
     </annotationProcessing>

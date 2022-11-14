@@ -16,7 +16,7 @@ paths:
           example: 38
         description: ID of the trip
     get:
-      summary: Get all inscriptions of a trip
+      summary: Get all passengers of a trip
       responses:
         404:
           description: No trip found with this ID
@@ -27,12 +27,9 @@ paths:
                 schema:
                   type: array
                   items:
-                    $ref: '#/components/schemas/inscription'
+                    $ref: '#/components/schemas/passengers'
     delete:
-      summary: Delete all inscriptions of a trip
-      security:
-        - authentication:
-            - driver
+      summary: Delete all passengers of a trip
       responses:
         401:
           description: Missing authentication
@@ -61,7 +58,7 @@ paths:
               content:
                 'application/json':
                   schema:
-                    $ref: '#/components/schemas/inscription'
+                    $ref: '#/components/schemas/passenger_trips'
     delete:
         summary: Delete all trips of a passenger
         responses:
@@ -91,9 +88,6 @@ paths:
         description: ID of the passenger
     post:
       summary: Create inscription
-      security:
-        - authentication:
-            - driver
       responses:
         '201':
           description: inscription created
@@ -123,9 +117,6 @@ paths:
 
     delete:
       summary: Delete inscription
-      security:
-        - authentication:
-            - driver
       responses:
         401:
           description: Missing authentication
@@ -138,9 +129,6 @@ paths:
 
     put:
         summary: Update inscription
-        security:
-            - authentication:
-                - driver
         responses:
             401:
               description: Missing authentication
@@ -171,9 +159,42 @@ components:
         trip_id: 38
         passenger_id: 2
         status: pending
+    passengers:
+      type: object
+      properties:
+        pending:
+          type: array
+          items:
+            $ref: '#/components/schemas/user'
+        accepted:
+          type: array
+          items:
+            $ref: '#/components/schemas/user'
+        refused:
+          type: array
+          items:
+            $ref: '#/components/schemas/user'
+
+    passenger_trips:
+      type: object
+      properties:
+        pending:
+          type: array
+          items:
+            $ref: '#/components/schemas/trip'
+        accepted:
+          type: array
+          items:
+            $ref: '#/components/schemas/trip'
+        refused:
+          type: array
+          items:
+            $ref: '#/components/schemas/trip'
     user:
       type: object
       properties:
+        id:
+          type: integer
         email:
           type: string
         firstname:
@@ -181,6 +202,44 @@ components:
         lastname:
           type: string
       example:
-        email: moi@gmail.com
-        firstname: moi
-        lastname: toujoursMoi
+        id: 1
+        email: gregory.seront@vinci.be
+        firstname: Gregory
+        lastname: Seront
+    trip:
+      type: object
+      properties:
+        id:
+          type: integer
+        origin:
+          $ref: '#/components/schemas/position'
+        destination:
+          $ref: '#/components/schemas/position'
+        departure:
+          type: string
+          description: Date in ISO 8601, YYYY-MM-DD
+        driver_id:
+          type: integer
+        available_seating:
+          type: integer
+      example:
+        id: 38
+        origin:
+          latitude: 50.849372
+          longitude: 4.451009
+        destination:
+          latitude: 50.849372
+          longitude: 4.451009
+        departure: 2022-10-24 10:45:00
+        driver_id: 12
+        available_seating: 2
+    position:
+      type: object
+      properties:
+        latitude:
+          type: number
+        longitude:
+          type: number
+      example:
+        latitude: 50.849372
+        longitude: 4.451009

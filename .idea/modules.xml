@@ -4,7 +4,10 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/ChattyCar.iml" filepath="$PROJECT_DIR$/.idea/ChattyCar.iml" />
       <module fileurl="file://$PROJECT_DIR$/eureka_server/eureka_server.iml" filepath="$PROJECT_DIR$/eureka_server/eureka_server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/notifications/notifications.iml" filepath="$PROJECT_DIR$/notifications/notifications.iml" />
+      <module fileurl="file://$PROJECT_DIR$/searchTrips/searchTrips.iml" filepath="$PROJECT_DIR$/searchTrips/searchTrips.iml" />
       <module fileurl="file://$PROJECT_DIR$/trips/trips.iml" filepath="$PROJECT_DIR$/trips/trips.iml" />
+      <module fileurl="file://$PROJECT_DIR$/users/users.iml" filepath="$PROJECT_DIR$/users/users.iml" />
     </modules>
   </component>
 </project>

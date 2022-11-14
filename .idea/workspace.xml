@@ -4,6 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="a10ba822-f218-4ab3-a0e0-7d8d6445471d" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/.idea/runConfigurations.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__antlr_antlr_2_7_7.xml" beforeDir="false" />
@@ -161,11 +162,27 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/eureka_Server/eureka_Server.iml" beforeDir="false" afterPath="$PROJECT_DIR$/eureka_Server/eureka_Server.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/eureka_server/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/eureka_server/src/main/resources/application.properties" afterDir="false" />
+=======
+    <list default="true" id="a10ba822-f218-4ab3-a0e0-7d8d6445471d" name="Changes" comment="Notifications microservice + yaml">
+      <change afterPath="$PROJECT_DIR$/notifications/ChattyCar-notifications.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+>>>>>>> 103adf7f9a8c7867ba493f6d76e8ac3f1a52746c
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="OpenAPI" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -182,10 +199,15 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+<<<<<<< HEAD
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../Catflix" />
     <property name="nodejs_package_manager_path" value="npm" />
+=======
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="jdk.selected.JAVA_MODULE" value="19" />
+>>>>>>> 103adf7f9a8c7867ba493f6d76e8ac3f1a52746c
   </component>
   <component name="RunDashboard">
     <option name="configurationTypes">
@@ -202,9 +224,30 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="NotificationsApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="notifications" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="be.vinci.ipl.notifications.NotificationsApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SearchTripsApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="searchTrips" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="be.vinci.ipl.searchtrips.SearchTripsApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="TripsApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="trips" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="be.vinci.ipl.chattycar.trips.TripsApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UsersApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="users" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="be.vinci.ipl.users.UsersApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -215,14 +258,14 @@
       <option name="customJreEnabled" value="false" />
       <option name="customTemplatesPath" value="" />
       <option name="enableDebugLogging" value="false" />
-      <option name="generateToPath" value="C:\HE_VINCI\Spring\ChattyCar\gen" />
+      <option name="generateToPath" value="C:\Users\zixme\IdeaProjects\ChattyCar\gen" />
       <option name="generationParameters">
         <list />
       </option>
       <option name="generatorPath" value="https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/5.0.0/openapi-generator-cli-5.0.0.jar" />
       <option name="jdkPath" value="" />
       <option name="language" value="java" />
-      <option name="specificationPath" value="C:\HE_VINCI\Spring\ChattyCar\chattycar-trips-service.yaml" />
+      <option name="specificationPath" value="C:\Users\zixme\IdeaProjects\ChattyCar\notifications\ChattyCar-notifications.yaml" />
       <method v="2" />
     </configuration>
   </component>
@@ -234,9 +277,30 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1667831987487</updated>
+<<<<<<< HEAD
       <workItem from="1667831990770" duration="513000" />
       <workItem from="1668430154600" duration="375000" />
+=======
+      <workItem from="1667831990770" duration="393000" />
+      <workItem from="1668246716316" duration="2845000" />
+      <workItem from="1668274493669" duration="891000" />
     </task>
+    <task id="LOCAL-00001" summary="Users micro + yaml?&#10;I hope i don't break anything">
+      <created>1668247896779</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1668247896780</updated>
+>>>>>>> 103adf7f9a8c7867ba493f6d76e8ac3f1a52746c
+    </task>
+    <task id="LOCAL-00002" summary="SearchTripls micro&#10; Yaml in progress">
+      <created>1668249801933</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1668249801933</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -253,5 +317,11 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Users micro + yaml?&#10;I hope i don't break anything" />
+    <MESSAGE value="SearchTripls micro&#10; Yaml in progress" />
+    <MESSAGE value="Notifications microservice + yaml" />
+    <option name="LAST_COMMIT_MESSAGE" value="Notifications microservice + yaml" />
   </component>
 </project>

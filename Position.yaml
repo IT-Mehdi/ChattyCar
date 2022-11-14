@@ -12,21 +12,34 @@ paths:
       tags:
         - positions
       parameters:
-        - name: params
+        - name: originLatitude
           in: query
-          description: '{"originLatitude":"50.36","originLongitude":"4.56","destLatitude":"50.36","destLongitude":"4.56"}'
-          required: true
+          description: "origin latitude of the trip"
           schema:
-            type: object
-            properties:
-              originLatitude:
-                type: "number"
-              originLongitude:
-                type: "number"
-              destLatitude:
-                type: "number"
-              destLongitude:
-                type: "number"
+            type: number
+            example: 56.3
+            required: true
+        - name: originLongitude
+          in: query
+          description: "origin longitude of the trip"
+          schema:
+            type: number
+            example: 58.4
+            required: true
+        - name: destLatitude
+          in: query
+          description: "destination latitude of the trip"
+          schema:
+            type: number
+            example: 45.1
+            required: true
+        - name: destLongitude
+          in: query
+          description: "destination longitude of the trip"
+          schema:
+            type: number
+            example: 75.3
+            required: true
 
       responses:
         400:

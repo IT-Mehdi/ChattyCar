@@ -7,7 +7,29 @@ servers:
   - url: 'http://localhost:9006'
     description : Development Server
 paths:
-  /users/{id}/notifications:
+  /notifications/users/{id} change route todo + create notification
+  /notifications/trips/{id} todo delete delete tout notification de trips id
+
+  /notifications:
+    post:
+      summary: Create a new notification
+      requestBody:
+        description: Information of the notification
+        content:
+          'application/json':
+            schema:
+              $ref: '#/components/schemas/notification'
+      responses:
+        400:
+          description: Notification in request is not correct
+        201:
+          description: Notification is created, sent notification created
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/notification'
+
+  /notifications/users/{id}:
     parameters:
       - name: id
         in: path
@@ -29,7 +51,7 @@ paths:
         404:
           description: No user found with this ID
         200:
-          description: Sent user notifications
+          description: Sent user notification
           content:
             application/json:
               schema:
@@ -51,12 +73,44 @@ paths:
         200:
           description: All notifications are deleted
 
+  /notifications/trips/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          example: 1
+        description: ID of the trip
+    get:
+      summary: Get trip notifications
+      responses:
+        401:
+          description: Missing authentication
+        403:
+          description: Not Identified as the corresponding trip
+        404:
+          description: No trip found with this ID
+        200:
+          description: Sent trip notification
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/notification'
+    delete:
+      summary: Delete all notifications of this trip
+      responses:
+        401:
+          description: Missing authentication
+        403:
+          description: Not identified as the corresponding trip
+        404:
+          description: No trip found with this ID
+        200:
+          description: All notifications are deleted
 components:
-  securitySchemes:
-    authentication:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
 
   schemas:
 

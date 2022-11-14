@@ -62,6 +62,16 @@ paths:
                 'application/json':
                   schema:
                     $ref: '#/components/schemas/inscription'
+    delete:
+        summary: Delete all trips of a passenger
+        responses:
+            403:
+              description: Not identified as the corresponding user
+            404:
+              description: No passenger found with this ID
+            201:
+              description: Passenger's trips are deleted
+
 
   /inscriptions/{trip_id}/{passenger_id}:
     parameters:

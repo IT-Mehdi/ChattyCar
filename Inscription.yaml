@@ -6,9 +6,9 @@ info:
 servers:
   - url: 'http://localhost:9003'
 paths:
-  /inscriptions/{id}/passengers:
+  /inscriptions/{trip_id}:
     parameters:
-      - name: id
+      - name: trip_id
         in: path
         required: true
         schema:
@@ -24,8 +24,10 @@ paths:
           description: Sent trip's inscriptions
           content:
             'application/json':
-              schema:
-                $ref: '#/components/schemas/inscription'
+                schema:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/inscription'
     delete:
       summary: Delete all inscriptions of a trip
       security:
@@ -40,9 +42,9 @@ paths:
           description: No trip found with this ID
         201:
           description: Trip's inscriptions are deleted
-  /inscriptions/{id}/trips:
+  /inscriptions/passengers/{user_id}:
     parameters:
-      - name: id
+      - name: user_id
         in: path
         required: true
         schema:
@@ -61,16 +63,16 @@ paths:
                   schema:
                     $ref: '#/components/schemas/inscription'
 
-  /inscriptions/{trip}/passengers/{passenger}:
+  /inscriptions/{trip_id}/{passenger_id}:
     parameters:
-      - name: trip
+      - name: trip_id
         in: path
         required: true
         schema:
           type: integer
           example: 38
         description: ID of the trip
-      - name: passenger
+      - name: passenger_id
         in: path
         required: true
         schema:
@@ -159,3 +161,16 @@ components:
         trip_id: 38
         passenger_id: 2
         status: pending
+    user:
+      type: object
+      properties:
+        email:
+          type: string
+        firstname:
+          type: string
+        lastname:
+          type: string
+      example:
+        email: moi@gmail.com
+        firstname: moi
+        lastname: toujoursMoi

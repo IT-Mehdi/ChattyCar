@@ -8,7 +8,7 @@ servers:
     description: Development server
 paths:
 
-  /drivers:
+  /trips:
     post:
       summary: Create a trip
       requestBody:
@@ -16,7 +16,7 @@ paths:
         content:
           'application/json':
             schema:
-              $ref: '#/components/schemas/info_trip'
+              $ref: '#/components/schemas/trip'
       responses:
         200:
           description: Trip created, returned the trip
@@ -105,16 +105,13 @@ paths:
                 $ref: '#/components/schemas/trip'
     delete:
       summary: Delete trip
-      security:
-        - authentication:
-            - driver
       responses:
         404:
           description: No trip found with this ID
         201:
           description: Trip is deleted
 
-  /users/{id}/driver:
+  /trips/driver/{id}:
     get:
       summary: Get trips where user is the driver with a future departure date
       parameters:
@@ -137,7 +134,7 @@ paths:
                 items:
                   $ref: "#/components/schemas/trip"
 
-  /users/{id}/passenger:
+  /trips/passenger/{id}:
     get:
       summary: Get trips where user is a passenger with a future departure date by status
       parameters:
@@ -157,6 +154,14 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/passenger_trips"
+
+    delete:
+      summary: Delete all trip where user is the driver
+      responses:
+        404:
+          description: No trip found with this ID
+        201:
+          description: All trips are deleted
 
 components:
 

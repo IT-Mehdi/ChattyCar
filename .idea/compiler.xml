@@ -6,15 +6,14 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="eureka_server" />
         <module name="trips" />
-        <module name="users" />
         <module name="searchTrips" />
+        <module name="users" />
         <module name="notifications" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="eureka_server" target="17" />
+      <module name="eureka_Server" target="17" />
       <module name="notifications" target="17" />
       <module name="searchTrips" target="17" />
       <module name="trips" target="17" />
@@ -23,7 +22,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="eureka_server" options="-parameters" />
+      <module name="eureka_Server" options="-parameters" />
       <module name="notifications" options="-parameters" />
       <module name="searchTrips" options="-parameters" />
       <module name="trips" options="-parameters" />

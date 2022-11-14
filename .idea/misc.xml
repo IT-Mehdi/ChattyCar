@@ -3,7 +3,6 @@
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
-        <option value="$PROJECT_DIR$/eureka_server/pom.xml" />
         <option value="$PROJECT_DIR$/trips/pom.xml" />
         <option value="$PROJECT_DIR$/users/pom.xml" />
         <option value="$PROJECT_DIR$/searchTrips/pom.xml" />
@@ -11,7 +10,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectRootManager">
+  <component name="ProjectRootManager" version="2" project-jdk-name="17" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>

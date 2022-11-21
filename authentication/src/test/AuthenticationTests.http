@@ -1,0 +1,39 @@
+### Create credentials
+POST http://localhost:9004/authentication
+Content-Type: application/json
+
+{
+  "email": "oui@gmail.com",
+  "password": "azerty"
+}
+
+### Update credentials
+PUT http://localhost:9004/authentication
+Content-Type: application/json
+
+{
+  "email": "oui@gmail.com",
+  "password": "password123"
+}
+
+### Delete credentials
+DELETE http://localhost:9004/authentication/oui@gmail.com
+
+### Connect user
+POST http://localhost:9004/authentication/connect
+Content-Type: application/json
+
+{
+  "email": "oui@gmail.com",
+  "password": "azerty"
+}
+
+> {%
+client.global.set("token", response.body);
+%}
+
+### Verify token
+POST http://localhost:9004/authentication/verify
+Content-Type: text/plain
+
+{{token}}

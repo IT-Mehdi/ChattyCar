@@ -9,17 +9,17 @@ import org.springframework.web.bind.annotation.*;
 @FeignClient(name = "users")
 public interface UsersProxy {
 
-  @PostMapping("/users/{pseudo}")
-  void createUser(@PathVariable String pseudo, @RequestBody User user);
+  @PostMapping("/users/{email}")
+  void createUser(@PathVariable String email, @RequestBody User user);
 
-  @GetMapping("/users/{pseudo}")
-  User readUser(@PathVariable String pseudo);
+  @GetMapping("/users/{email}")
+  User readUser(@PathVariable String email);
 
-  @PutMapping("/users/{pseudo}")
-  void updateUser(@PathVariable String pseudo, @RequestBody User user);
+  @PutMapping("/users/{email}")
+  void updateUser(@PathVariable String email, @RequestBody User user);
 
-  @DeleteMapping("/users/{pseudo}")
-  void deleteUser(@PathVariable String pseudo);
+  @DeleteMapping("/users/{email}")
+  void deleteUser(@PathVariable String email);
 
 }
 

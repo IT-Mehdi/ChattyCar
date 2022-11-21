@@ -5,14 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9b012dc5-4516-49d2-a597-755dfca52388" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/trips/src/test/java/be/vinci/ipl/chattycar/trips/createTrips.http" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/trips/src/test/java/be/vinci/ipl/chattycar/trips/trips.http" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/http-requests-log.http" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/httpRequests/http-requests-log.http" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/eureka_Server/eureka_Server.iml" beforeDir="false" afterPath="$PROJECT_DIR$/eureka_Server/eureka_Server.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trips/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/trips/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trips/src/main/java/be/vinci/ipl/chattycar/trips/Trip.java" beforeDir="false" afterPath="$PROJECT_DIR$/trips/src/main/java/be/vinci/ipl/chattycar/trips/Trip.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trips/src/main/java/be/vinci/ipl/chattycar/trips/TripsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/trips/src/main/java/be/vinci/ipl/chattycar/trips/TripsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trips/src/main/java/be/vinci/ipl/chattycar/trips/TripsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/trips/src/main/java/be/vinci/ipl/chattycar/trips/TripsRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/trips/src/main/java/be/vinci/ipl/chattycar/trips/TripsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/trips/src/main/java/be/vinci/ipl/chattycar/trips/TripsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trips/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/trips/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,12 +48,20 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/HE_VINCI/Spring/ChattyCar"
+    "last_opened_file_path": "C:/HE_VINCI/Spring/ChattyCar",
+    "nodejs_package_manager_path": "npm"
   }
 }]]></component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
+  </component>
   <component name="RunDashboard">
     <option name="configurationTypes">
       <set>
@@ -52,7 +69,22 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.EurekaServerApplication">
+  <component name="RunManager" selected="Spring Boot.TripsApplication">
+    <configuration name="All in createTrips" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$PROJECT_DIR$/trips/src/test/java/be/vinci/ipl/chattycar/trips/createTrips.http">
+      <method v="2" />
+    </configuration>
+    <configuration name="trips | Create one" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/trips/src/test/java/be/vinci/ipl/chattycar/trips/trips.http" requestIdentifier="Create one" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="trips | Delete all trips of driver" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/trips/src/test/java/be/vinci/ipl/chattycar/trips/trips.http" index="5" requestIdentifier="Delete all trips of driver" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="trips | Delete one" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/trips/src/test/java/be/vinci/ipl/chattycar/trips/trips.http" index="4" requestIdentifier="Delete one" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="trips | Read all" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/trips/src/test/java/be/vinci/ipl/chattycar/trips/trips.http" index="3" requestIdentifier="Read all" runType="Run single request">
+      <method v="2" />
+    </configuration>
     <configuration name="EurekaServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="eureka_server" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="be.vinci.ipl.eureka_server.EurekaServerApplication" />
@@ -81,6 +113,31 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="SwaggerCodegen">
+      <option name="activeConfigurationType" value="FILE" />
+      <option name="configurationPath" value="" />
+      <option name="customJreEnabled" value="false" />
+      <option name="customTemplatesPath" value="" />
+      <option name="enableDebugLogging" value="false" />
+      <option name="generateToPath" value="C:\HE_VINCI\Spring\ChattyCar\gen" />
+      <option name="generationParameters">
+        <list />
+      </option>
+      <option name="generatorPath" value="https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/5.0.0/openapi-generator-cli-5.0.0.jar" />
+      <option name="jdkPath" value="" />
+      <option name="language" value="java" />
+      <option name="specificationPath" value="C:\HE_VINCI\Spring\ChattyCar\chattycar-trips-service.yaml" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="HTTP Request.trips | Read all" />
+        <item itemvalue="HTTP Request.trips | Delete all trips of driver" />
+        <item itemvalue="HTTP Request.All in createTrips" />
+        <item itemvalue="HTTP Request.trips | Create one" />
+        <item itemvalue="HTTP Request.trips | Delete one" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -90,7 +147,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1669035737061</updated>
-      <workItem from="1669035738411" duration="95000" />
+      <workItem from="1669035738411" duration="5816000" />
     </task>
     <servers />
   </component>

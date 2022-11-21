@@ -5,9 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Getter
@@ -20,10 +18,20 @@ public class Trip {
     @Id
     private int id;
     @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "latitude", column = @Column(name = "origin_latitude")),
+            @AttributeOverride(name = "longitude", column = @Column(name = "origin_longitude")),
+    })
     private Position origin;
+
     @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "latitude", column = @Column(name = "destination_latitude")),
+            @AttributeOverride(name = "longitude", column = @Column(name = "destination_longitude")),
+    })
     private Position destination;
+
     private LocalDate departure; //Si on veut utiliser ce param dans une route utilsier notation
-    private int driver_id;
-    private int available_seating;
+    private int driverId;
+    private int availableSeating;
 }

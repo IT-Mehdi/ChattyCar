@@ -7,8 +7,39 @@ servers:
   - url: 'http://localhost:9004'
     description: Development server
 paths:
+  /authentication:
+    put:
+      summary: Update credentials
+      requestBody:
+        description: Credentials of the user
+        content:
+          'application/json':
+            schema:
+              $ref: '#/components/schemas/credentials'
+      responses:
+        400:
+          description: Incorrect credentials
+        404:
+          description: Credentials not found
+        200:
+          description: Credentials updated
+    post:
+      summary: Create credentials
+      requestBody:
+        description: Credentials of the user
+        content:
+          'application/json':
+            schema:
+              $ref: '#/components/schemas/credentials'
+      responses:
+        400:
+          description: Incorrect credentials
+        409:
+          description: Credentials already exists
+        201:
+          description: Credentials created
 
-  /authenticate/connect:
+  /authentication/connect:
     post:
       summary: Connect user
       requestBody:
@@ -56,39 +87,6 @@ paths:
         description: Email of the user
         schema:
           type: string
-
-    post:
-      summary: Create credentials
-      requestBody:
-        description: Credentials of the user
-        content:
-          'application/json':
-            schema:
-              $ref: '#/components/schemas/credentials'
-      responses:
-        400:
-          description: Incorrect credentials
-        409:
-          description: Credentials already exists
-        201:
-          description: Credentials created
-
-    put:
-      summary: Update credentials
-      requestBody:
-        description: Credentials of the user
-        content:
-          'application/json':
-            schema:
-              $ref: '#/components/schemas/credentials'
-      responses:
-        400:
-          description: Incorrect credentials
-        404:
-          description: Credentials not found
-        200:
-          description: Credentials updated
-
     delete:
       summary: Delete credentials
       responses:

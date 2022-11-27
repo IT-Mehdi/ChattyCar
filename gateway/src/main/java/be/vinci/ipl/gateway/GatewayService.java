@@ -42,5 +42,9 @@ public class GatewayService {
     return new User(id,"email", "user.getFirstname()", "user.getLastname()");
   }
 
+  public void updateCredentials(Credentials credentials){
+     authenticationProxy.updateCredentials(credentials);
+  }
+
 
 }

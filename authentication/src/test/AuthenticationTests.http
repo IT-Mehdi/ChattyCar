@@ -19,7 +19,7 @@ Content-Type: application/json
 ### Delete credentials
 DELETE http://localhost:9004/authentication/oui@gmail.com
 
-### Connect user
+### Connect noIdUser
 POST http://localhost:9004/authentication/connect
 Content-Type: application/json
 

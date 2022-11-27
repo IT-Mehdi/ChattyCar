@@ -1,5 +1,6 @@
 package be.vinci.ipl.gateway.data;
 
+import be.vinci.ipl.gateway.models.NoIdUser;
 import be.vinci.ipl.gateway.models.User;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Repository;
@@ -9,14 +10,20 @@ import org.springframework.web.bind.annotation.*;
 @FeignClient(name = "users")
 public interface UsersProxy {
 
-  @PostMapping("/users/{email}")
-  void createUser(@PathVariable String email, @RequestBody User user);
+  @PostMapping("/users")
+  User createUser(@RequestBody NoIdUser noIdUser);
 
-  @GetMapping("/users/{email}")
-  User readUser(@PathVariable String email);
+  @GetMapping("/users/{id}")
+  NoIdUser readUserById(@PathVariable int id);
 
-  @PutMapping("/users/{email}")
-  void updateUser(@PathVariable String email, @RequestBody User user);
+  @GetMapping("/users")
+  NoIdUser readUserByEmail(@RequestParam String email);
+
+  @PutMapping("/users/{id}")
+  void updateUser(@PathVariable int id, @RequestBody NoIdUser noIdUser);
+
+  @PutMapping("/users")
+  void updateUserPassword(@RequestBody NoIdUser noIdUser);
 
   @DeleteMapping("/users/{email}")
   void deleteUser(@PathVariable String email);

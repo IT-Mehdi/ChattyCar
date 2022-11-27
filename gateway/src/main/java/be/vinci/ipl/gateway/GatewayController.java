@@ -1,10 +1,10 @@
 package be.vinci.ipl.gateway;
 
-import be.vinci.ipl.gateway.models.Credentials;
+import be.vinci.ipl.gateway.models.*;
 import org.springframework.web.bind.annotation.*;
 
 
-@CrossOrigin(origins = { "http://localhost:8080" })
+@CrossOrigin(origins = {"http://localhost:8080"})
 @RestController
 public class GatewayController {
 
@@ -19,6 +19,10 @@ public class GatewayController {
     return service.connect(credentials);
   }
 
+  @PostMapping("/users")
+  User createUser(@RequestBody UserWithCredentials credentials) {
+    return service.createUser(credentials);
+  }
 
 
 }

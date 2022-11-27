@@ -1,6 +1,5 @@
 package be.vinci.ipl.gateway.models;
 
-import javax.persistence.*;
 import lombok.*;
 
 @Getter
@@ -8,11 +7,12 @@ import lombok.*;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private long id;
+public class NoIdUser {
   private String email;
   private String firstname;
   private String lastname;
+
+  public User toUser() {
+    return new User(0, email, firstname, lastname);
+  }
 }

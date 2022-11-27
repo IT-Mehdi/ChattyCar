@@ -14,7 +14,7 @@ POST http://localhost:8080/auth
 Content-Type: application/json
 
 {
-  "email": "oui@gmail.com",
+  "email": "ouii@gmail.com",
   "password": "123"
 }
 
@@ -40,4 +40,17 @@ Authorization: {{token}}
 {
   "email": "oui@gmail.com",
   "password": "1234"
+}
+
+### update user
+
+PUT http://localhost:8080/users/19
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "id": 19,
+  "email": "ouii@gmail.com",
+  "firstname": "rayan",
+  "lastname": "bke"
 }

@@ -46,5 +46,9 @@ public class GatewayService {
      authenticationProxy.updateCredentials(credentials);
   }
 
+  public void updateUser(int id, User user){
+//    usersProxy.updateUser(id , user);
+  }
+
 
 }

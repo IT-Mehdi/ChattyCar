@@ -46,5 +46,15 @@ public class GatewayController {
     service.updateCredentials(credentials);
   }
 
+  @PutMapping("/users/{id}")
+  void updateUser(@PathVariable int id, @RequestBody User user, @RequestHeader("Authorization") String token){
+    if (user.getId() != id) throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+
+    String userEmail = service.verify(token);
+    if (!userEmail.equals(user.getEmail())) throw new ResponseStatusException(HttpStatus.FORBIDDEN);
+
+    service.updateUser(id, user);
+  }
+
 
 }

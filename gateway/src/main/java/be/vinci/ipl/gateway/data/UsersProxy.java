@@ -20,7 +20,7 @@ public interface UsersProxy {
   User readUserByEmail(@RequestParam String email);
 
   @PutMapping("/users/{id}")
-  void updateUser(@PathVariable int id, @RequestBody NoIdUser noIdUser);
+  void updateUser(@PathVariable int id, @RequestBody User user);
 
   @DeleteMapping("/users/{email}")
   void deleteUser(@PathVariable String email);

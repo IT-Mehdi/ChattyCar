@@ -15,4 +15,8 @@ public class User {
   private String email;
   private String firstname;
   private String lastname;
+
+  public NoIdUser toNoIdUser() {
+    return new NoIdUser(email, firstname, lastname);
+  }
 }

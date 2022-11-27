@@ -8,3 +8,25 @@ Content-Type: application/json
   "lastname": "bka",
   "password": "123"
 }
+
+### Connect user
+POST http://localhost:8080/auth
+Content-Type: application/json
+
+{
+  "email": "oui@gmail.com",
+  "password": "123"
+}
+
+> {%
+client.global.set("token", response.body);
+%}
+
+
+### Get user by email
+
+GET http://localhost:8080/users?email=oui@gmail.com
+
+### Get user by id
+
+GET http://localhost:8080/users/19

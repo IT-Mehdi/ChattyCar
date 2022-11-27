@@ -14,10 +14,10 @@ public interface UsersProxy {
   User createUser(@RequestBody NoIdUser noIdUser);
 
   @GetMapping("/users/{id}")
-  NoIdUser readUserById(@PathVariable int id);
+  User readUserById(@PathVariable int id);
 
   @GetMapping("/users")
-  NoIdUser readUserByEmail(@RequestParam String email);
+  User readUserByEmail(@RequestParam String email);
 
   @PutMapping("/users/{id}")
   void updateUser(@PathVariable int id, @RequestBody NoIdUser noIdUser);

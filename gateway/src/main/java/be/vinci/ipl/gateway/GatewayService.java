@@ -29,8 +29,17 @@ public class GatewayService {
 
   public User createUser(UserWithCredentials user) {
     authenticationProxy.createCredentials(user.toCredentials());
-//    return usersProxy.createUser(user.toNoIdUser());
+//    return usersProxy.createUser(user.toUser());
     return new User(0,user.getEmail(), user.getFirstname(), user.getLastname());
+  }
+  public User readUserByEmail(String email){
+//    return usersProxy.readUserByEmail(email);
+    return new User(0,email, "user.getFirstname()", "user.getLastname()");
+  }
+
+  public User readUserById(int id){
+//    return usersProxy.readUserById(id);
+    return new User(id,"email", "user.getFirstname()", "user.getLastname()");
   }
 
 

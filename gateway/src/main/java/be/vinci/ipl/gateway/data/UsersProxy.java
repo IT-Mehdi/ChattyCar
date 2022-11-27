@@ -22,9 +22,6 @@ public interface UsersProxy {
   @PutMapping("/users/{id}")
   void updateUser(@PathVariable int id, @RequestBody NoIdUser noIdUser);
 
-  @PutMapping("/users")
-  void updateUserPassword(@RequestBody NoIdUser noIdUser);
-
   @DeleteMapping("/users/{email}")
   void deleteUser(@PathVariable String email);
 

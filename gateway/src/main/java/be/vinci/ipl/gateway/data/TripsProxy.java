@@ -27,11 +27,11 @@ public interface TripsProxy {
   void deleteTripById(@PathVariable int id);
 
   @GetMapping("/trips/driver/{id}")
-  List<Trip> readTripsByDriver(@PathVariable int id);
+  Iterable<Trip> readTripsByDriver(@PathVariable int id);
 
   @DeleteMapping("/trips/driver/{id}")
   void deleteTripsByDriver(@PathVariable int id);
 
   @GetMapping("/trips/passengers/{id}")
-  List<Trip> readTripsByPassenger(@PathVariable int id);
+  Iterable<Trip> readTripsByPassenger(@PathVariable int id);
 }

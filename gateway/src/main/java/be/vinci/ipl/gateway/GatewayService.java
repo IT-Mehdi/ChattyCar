@@ -72,5 +72,8 @@ public class GatewayService {
     return tripsProxy.createTrip(newTrip);
   }
 
-
+  public Iterable<Trip> readTrips(String departure_date, double originLat, double originLon,
+      double destinationLat, double destinationLon){
+    return tripsProxy.readTrips( departure_date,  originLat,  originLon, destinationLat, destinationLon);
+  }
 }

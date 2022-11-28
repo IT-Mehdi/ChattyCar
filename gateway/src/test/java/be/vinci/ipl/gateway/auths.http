@@ -55,5 +55,5 @@ Authorization: {{token}}
   "lastname": "bke"
 }
 ### Delete one
-DELETE http://localhost:9090/users/19
+DELETE http://localhost:8080/users/19
 Authorization: {{token}}

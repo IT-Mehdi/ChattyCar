@@ -38,38 +38,43 @@ public class GatewayController {
 
   @PutMapping("/users")
   void updatePassword(@RequestBody Credentials credentials, @RequestHeader("Authorization") String token) {
-
-    String userEmail = service.verify(token);
-    if (!userEmail.equals(credentials.getEmail())) throw new ResponseStatusException(HttpStatus.FORBIDDEN);
-
+    CheckTokenUserByEmail(credentials.getEmail(), token);
     service.updateCredentials(credentials);
   }
 
   @PutMapping("/users/{id}")
   void updateUser(@PathVariable int id, @RequestBody User user, @RequestHeader("Authorization") String token){
     if (user.getId() != id) throw new ResponseStatusException(HttpStatus.FORBIDDEN);
-
-    String userEmail = service.verify(token);
-    if (!userEmail.equals(user.getEmail())) throw new ResponseStatusException(HttpStatus.FORBIDDEN);
-
+    CheckTokenUserByEmail(user.getEmail(), token);
     service.updateUser(id, user);
   }
 
   @DeleteMapping("/users/{id}")
   void deleteUser(@PathVariable int id, @RequestHeader("Authorization") String token){
-    String userEmail = service.verify(token);
-    User user = readUserById(id);
-    if(!user.getEmail().equals(userEmail)) throw new ResponseStatusException(HttpStatus.FORBIDDEN);
+    CheckTokenUserById(id,token);
     service.deleteUser(id);
   }
 
   @GetMapping("/users/{id}/driver")
-  Iterable<Trip> readTripsByDriver(@PathVariable int id){
+  Iterable<Trip> readTripsByDriver(@PathVariable int id, @RequestHeader("Authorization") String token){
+    CheckTokenUserById(id,token);
     return service.readTripsByDriver(id);
   }
 
   @GetMapping("/users/{id}/passenger")
-  Iterable<Trip> readTripsByPassenger(@PathVariable int id){
+  Iterable<Trip> readTripsByPassenger(@PathVariable int id, @RequestHeader("Authorization") String token){
+    CheckTokenUserById(id,token);
     return service.readTripsByPassenger(id);
+  }
+
+  private void CheckTokenUserById(int id, String token){
+    String userEmail = service.verify(token);
+    User user = readUserById(id);
+    if(!userEmail.equals(user.getEmail())) throw new ResponseStatusException(HttpStatus.FORBIDDEN);
+  }
+
+  private void CheckTokenUserByEmail(String email, String token){
+    String userEmail = service.verify(token);
+    if(!userEmail.equals(email)) throw new ResponseStatusException(HttpStatus.FORBIDDEN);
   }
 }

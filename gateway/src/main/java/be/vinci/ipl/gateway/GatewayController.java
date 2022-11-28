@@ -81,6 +81,11 @@ public class GatewayController {
     return service.readTrips( departure_date,  originLat,  originLon, destinationLat, destinationLon);
   }
 
+  @GetMapping("/trips/{id}")
+  public Trip readTripById(@PathVariable int id){
+    return service.readTripById(id);
+  }
+
   private void checkUserTokenById(int id, String token){
     String userEmail = service.verify(token);
     User user = readUserById(id);

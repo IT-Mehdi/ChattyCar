@@ -76,4 +76,8 @@ public class GatewayService {
       double destinationLat, double destinationLon){
     return tripsProxy.readTrips( departure_date,  originLat,  originLon, destinationLat, destinationLon);
   }
+
+  public Trip readTripById(int id){
+    return tripsProxy.readTripById(id);
+  }
 }

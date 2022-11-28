@@ -1,21 +1,26 @@
 package be.vinci.ipl.gateway;
 
 import be.vinci.ipl.gateway.data.AuthenticationProxy;
+import be.vinci.ipl.gateway.data.TripsProxy;
 import be.vinci.ipl.gateway.data.UsersProxy;
 import be.vinci.ipl.gateway.models.Credentials;
 import be.vinci.ipl.gateway.models.User;
 import be.vinci.ipl.gateway.models.NewUser;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Service
 public class GatewayService {
 
   private final AuthenticationProxy authenticationProxy;
   private final UsersProxy usersProxy;
+  private final TripsProxy tripsProxy;
 
-  public GatewayService(AuthenticationProxy authenticationProxy, UsersProxy usersProxy) {
+  public GatewayService(AuthenticationProxy authenticationProxy, UsersProxy usersProxy,
+      TripsProxy tripsProxy) {
     this.authenticationProxy = authenticationProxy;
     this.usersProxy = usersProxy;
+    this.tripsProxy = tripsProxy;
   }
 
   public String connect(Credentials credentials) {
@@ -47,6 +52,11 @@ public class GatewayService {
 
   public void updateUser(int id, User user){
 //    usersProxy.updateUser(id , user);
+  }
+
+  void deleteUser(@PathVariable int id){
+//    tripsProxy.deleteTripsByDriver(id);
+    usersProxy.deleteUser(id);
   }
 
 

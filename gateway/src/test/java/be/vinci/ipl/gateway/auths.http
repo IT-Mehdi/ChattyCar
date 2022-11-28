@@ -3,7 +3,7 @@ POST http://localhost:8080/users
 Content-Type: application/json
 
 {
-  "email": "oui@gmail.com",
+  "email": "ouffihg@gmail.com",
   "firstname": "rayan",
   "lastname": "bka",
   "password": "123"
@@ -14,8 +14,8 @@ POST http://localhost:8080/auth
 Content-Type: application/json
 
 {
-  "email": "ouii@gmail.com",
-  "password": "123"
+  "email": "oui@gmail.com",
+  "password": "1234"
 }
 
 > {%
@@ -50,7 +50,10 @@ Authorization: {{token}}
 
 {
   "id": 19,
-  "email": "ouii@gmail.com",
+  "email": "oui@gmail.com",
   "firstname": "rayan",
   "lastname": "bke"
 }
+### Delete one
+DELETE http://localhost:9090/users/19
+Authorization: {{token}}

@@ -1,6 +1,6 @@
 openapi: 3.0.3
 info:
-  title: Catflix authentication service
+  title: ChattyCar authentication service
   description: Microservice handling authentication and credentials database in Catflix project
   version: 1.0.0
 servers:

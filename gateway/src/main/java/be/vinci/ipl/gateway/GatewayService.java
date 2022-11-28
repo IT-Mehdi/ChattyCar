@@ -52,7 +52,9 @@ public class GatewayService {
   }
 
   void deleteUser(@PathVariable int id){
-//    tripsProxy.deleteTripsByDriver(id);
+    tripsProxy.deleteTripsByDriver(id);
+    User userEmail = readUserById(id);
+    authenticationProxy.deleteCredentials(userEmail.getEmail());
     usersProxy.deleteUser(id);
   }
 

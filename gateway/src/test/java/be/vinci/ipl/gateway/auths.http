@@ -3,10 +3,10 @@ POST http://localhost:8080/users
 Content-Type: application/json
 
 {
-  "email": "ouffihg@gmail.com",
-  "firstname": "rayan",
-  "lastname": "bka",
-  "password": "123"
+  "email": "rayan123@gmail.com",
+  "firstname": "fzefez",
+  "lastname": "bkzefzfa",
+  "password": "123456"
 }
 
 ### Connect user

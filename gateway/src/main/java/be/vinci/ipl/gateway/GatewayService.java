@@ -33,17 +33,14 @@ public class GatewayService {
 
   public User createUser(NewUser user) {
     authenticationProxy.createCredentials(user.toCredentials());
-//    return usersProxy.createUser(user.toUser());
-    return new User(0,user.getEmail(), user.getFirstname(), user.getLastname());
+    return usersProxy.createUser(user.toNoIdUser());
   }
   public User readUserByEmail(String email){
-//    return usersProxy.readUserByEmail(email);
-    return new User(0,email, "user.getFirstname()", "user.getLastname()");
+    return usersProxy.readUserByEmail(email);
   }
 
   public User readUserById(int id){
-//    return usersProxy.readUserById(id);
-    return new User(id,"email", "user.getFirstname()", "user.getLastname()");
+    return usersProxy.readUserById(id);
   }
 
   public void updateCredentials(Credentials credentials){
@@ -51,7 +48,7 @@ public class GatewayService {
   }
 
   public void updateUser(int id, User user){
-//    usersProxy.updateUser(id , user);
+    usersProxy.updateUser(id , user);
   }
 
   void deleteUser(@PathVariable int id){

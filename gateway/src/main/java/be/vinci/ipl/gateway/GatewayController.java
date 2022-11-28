@@ -22,8 +22,8 @@ public class GatewayController {
   }
 
   @PostMapping("/users")
-  User createUser(@RequestBody NewUser credentials) {
-    return service.createUser(credentials);
+  User createUser(@RequestBody NewUser user) {
+    return service.createUser(user);
   }
 
   @GetMapping("/users")

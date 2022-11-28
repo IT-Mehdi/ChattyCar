@@ -52,18 +52,18 @@ public class GatewayService {
     usersProxy.updateUser(id , user);
   }
 
-  void deleteUser(@PathVariable int id){
+  public void deleteUser(@PathVariable int id){
     tripsProxy.deleteTripsByDriver(id);
     User userEmail = readUserById(id);
     authenticationProxy.deleteCredentials(userEmail.getEmail());
     usersProxy.deleteUser(id);
   }
 
-  Iterable<Trip> readTripsByDriver(int id){
+  public Iterable<Trip> readTripsByDriver(int id){
     return tripsProxy.readTripsByDriver(id);
   }
 
-  Iterable<Trip> readTripsByPassenger(int id){
+  public Iterable<Trip> readTripsByPassenger(int id){
     return tripsProxy.readTripsByPassenger(id);
   }
 

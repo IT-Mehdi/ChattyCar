@@ -17,55 +17,56 @@ public class GatewayController {
   }
 
   @PostMapping("/auth")
-  String connect(@RequestBody Credentials credentials) {
+  public String connect(@RequestBody Credentials credentials) {
     return service.connect(credentials);
   }
 
   @PostMapping("/users")
-  User createUser(@RequestBody NewUser user) {
+  public User createUser(@RequestBody NewUser user) {
     return service.createUser(user);
   }
 
   @GetMapping("/users")
-  User readUserByEmail(@RequestParam String email) {
+  public User readUserByEmail(@RequestParam String email) {
     return service.readUserByEmail(email);
   }
 
   @GetMapping("/users/{id}")
-  User readUserById(@PathVariable int id) {
+  public User readUserById(@PathVariable int id) {
     return service.readUserById(id);
   }
 
   @PutMapping("/users")
-  void updatePassword(@RequestBody Credentials credentials, @RequestHeader("Authorization") String token) {
+  public void updatePassword(@RequestBody Credentials credentials, @RequestHeader("Authorization") String token) {
     CheckTokenUserByEmail(credentials.getEmail(), token);
     service.updateCredentials(credentials);
   }
 
   @PutMapping("/users/{id}")
-  void updateUser(@PathVariable int id, @RequestBody User user, @RequestHeader("Authorization") String token){
+  public void updateUser(@PathVariable int id, @RequestBody User user, @RequestHeader("Authorization") String token){
     if (user.getId() != id) throw new ResponseStatusException(HttpStatus.FORBIDDEN);
     CheckTokenUserByEmail(user.getEmail(), token);
     service.updateUser(id, user);
   }
 
   @DeleteMapping("/users/{id}")
-  void deleteUser(@PathVariable int id, @RequestHeader("Authorization") String token){
+  public void deleteUser(@PathVariable int id, @RequestHeader("Authorization") String token){
     CheckTokenUserById(id,token);
     service.deleteUser(id);
   }
 
   @GetMapping("/users/{id}/driver")
-  Iterable<Trip> readTripsByDriver(@PathVariable int id, @RequestHeader("Authorization") String token){
+  public Iterable<Trip> readTripsByDriver(@PathVariable int id, @RequestHeader("Authorization") String token){
     CheckTokenUserById(id,token);
     return service.readTripsByDriver(id);
   }
 
   @GetMapping("/users/{id}/passenger")
-  Iterable<Trip> readTripsByPassenger(@PathVariable int id, @RequestHeader("Authorization") String token){
+  public Iterable<Trip> readTripsByPassenger(@PathVariable int id, @RequestHeader("Authorization") String token){
     CheckTokenUserById(id,token);
     return service.readTripsByPassenger(id);
   }
+
 
   private void CheckTokenUserById(int id, String token){
     String userEmail = service.verify(token);

@@ -40,14 +40,8 @@ paths:
         description: ID of the user
     get:
       summary: Get user notifications
-      security:
-        - authentication:
-            - specific_user
+
       responses:
-        401:
-          description: Missing authentication
-        403:
-          description: Not Identified as the corresponding user
         404:
           description: No user found with this ID
         200:
@@ -60,14 +54,8 @@ paths:
                   $ref: '#/components/schemas/notification'
     delete:
       summary: Delete all notifications of this user
-      security:
-        - authentication:
-            - specific_user
+
       responses:
-        401:
-          description: Missing authentication
-        403:
-          description: Not identified as the corresponding user
         404:
           description: No user found with this ID
         200:
@@ -85,10 +73,6 @@ paths:
     get:
       summary: Get trip notifications
       responses:
-        401:
-          description: Missing authentication
-        403:
-          description: Not Identified as the corresponding trip
         404:
           description: No trip found with this ID
         200:
@@ -102,10 +86,6 @@ paths:
     delete:
       summary: Delete all notifications of this trip
       responses:
-        401:
-          description: Missing authentication
-        403:
-          description: Not identified as the corresponding trip
         404:
           description: No trip found with this ID
         200:

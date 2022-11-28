@@ -5,23 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9b012dc5-4516-49d2-a597-755dfca52388" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/trips/src/test/java/be/vinci/ipl/chattycar/trips/createTrips.http" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/trips/src/test/java/be/vinci/ipl/chattycar/trips/trips.http" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/http-requests-log.http" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/httpRequests/http-requests-log.http" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eureka_Server/eureka_Server.iml" beforeDir="false" afterPath="$PROJECT_DIR$/eureka_Server/eureka_Server.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/trips/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/trips/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/trips/src/main/java/be/vinci/ipl/chattycar/trips/Trip.java" beforeDir="false" afterPath="$PROJECT_DIR$/trips/src/main/java/be/vinci/ipl/chattycar/trips/Trip.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/trips/src/main/java/be/vinci/ipl/chattycar/trips/TripsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/trips/src/main/java/be/vinci/ipl/chattycar/trips/TripsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/trips/src/main/java/be/vinci/ipl/chattycar/trips/TripsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/trips/src/main/java/be/vinci/ipl/chattycar/trips/TripsRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/trips/src/main/java/be/vinci/ipl/chattycar/trips/TripsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/trips/src/main/java/be/vinci/ipl/chattycar/trips/TripsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/trips/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/trips/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,7 +40,8 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "last_opened_file_path": "C:/HE_VINCI/Spring/ChattyCar",
-    "nodejs_package_manager_path": "npm"
+    "nodejs_package_manager_path": "npm",
+    "spring.configuration.checksum": "882065c4d9b9470eb0f268f0b90fea74"
   }
 }]]></component>
   <component name="ReactorSettings">
@@ -147,7 +132,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1669035737061</updated>
-      <workItem from="1669035738411" duration="5816000" />
+      <workItem from="1669035738411" duration="6572000" />
+      <workItem from="1669284094594" duration="97000" />
     </task>
     <servers />
   </component>

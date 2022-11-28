@@ -63,5 +63,9 @@ public class GatewayService {
     return tripsProxy.readTripsByDriver(id);
   }
 
+  Iterable<Trip> readTripsByPassenger(int id){
+    return tripsProxy.readTripsByPassenger(id);
+  }
+
 
 }

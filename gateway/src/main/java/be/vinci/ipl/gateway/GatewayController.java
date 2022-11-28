@@ -67,4 +67,9 @@ public class GatewayController {
   Iterable<Trip> readTripsByDriver(@PathVariable int id){
     return service.readTripsByDriver(id);
   }
+
+  @GetMapping("/users/{id}/passenger")
+  Iterable<Trip> readTripsByPassenger(@PathVariable int id){
+    return service.readTripsByPassenger(id);
+  }
 }

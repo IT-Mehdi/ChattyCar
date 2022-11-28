@@ -7,8 +7,6 @@ servers:
   - url: 'http://localhost:9006'
     description : Development Server
 paths:
-  /notifications/users/{id} change route todo + create notification
-  /notifications/trips/{id} todo delete delete tout notification de trips id
 
   /notifications:
     post:

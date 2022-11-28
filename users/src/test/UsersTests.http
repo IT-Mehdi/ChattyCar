@@ -1,0 +1,29 @@
+### Create user
+POST http://localhost:9002/users/Chatty@Car
+Content-Type: application/json
+
+{
+  "email": "Chatty@Car",
+  "firstname": "firstnametest",
+  "lastname": "lastnametest"
+}
+
+### Read user
+GET http://localhost:9002/users/Chatty@Car
+
+### Get user by id
+GET http://localhost:9002/users/52
+
+### Update user by id
+PUT http://localhost:9002/users/52
+Content-Type: application/json
+
+{
+  "id": 52,
+  "email": "Chatty@Car",
+  "firstname": "firstnametest",
+  "lastname": "lastnametest"
+}
+
+#### Delete user by id
+DELETE http://localhost:9002/users/52

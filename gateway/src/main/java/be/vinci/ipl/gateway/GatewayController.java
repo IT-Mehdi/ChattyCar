@@ -38,43 +38,44 @@ public class GatewayController {
 
   @PutMapping("/users")
   public void updatePassword(@RequestBody Credentials credentials, @RequestHeader("Authorization") String token) {
-    CheckTokenUserByEmail(credentials.getEmail(), token);
+    checkTokenUserByEmail(credentials.getEmail(), token);
     service.updateCredentials(credentials);
   }
 
   @PutMapping("/users/{id}")
   public void updateUser(@PathVariable int id, @RequestBody User user, @RequestHeader("Authorization") String token){
     if (user.getId() != id) throw new ResponseStatusException(HttpStatus.FORBIDDEN);
-    CheckTokenUserByEmail(user.getEmail(), token);
+    checkTokenUserByEmail(user.getEmail(), token);
     service.updateUser(id, user);
   }
 
   @DeleteMapping("/users/{id}")
   public void deleteUser(@PathVariable int id, @RequestHeader("Authorization") String token){
-    CheckTokenUserById(id,token);
+    checkTokenUserById(id,token);
     service.deleteUser(id);
   }
 
   @GetMapping("/users/{id}/driver")
   public Iterable<Trip> readTripsByDriver(@PathVariable int id, @RequestHeader("Authorization") String token){
-    CheckTokenUserById(id,token);
+    checkTokenUserById(id,token);
     return service.readTripsByDriver(id);
   }
 
   @GetMapping("/users/{id}/passenger")
   public Iterable<Trip> readTripsByPassenger(@PathVariable int id, @RequestHeader("Authorization") String token){
-    CheckTokenUserById(id,token);
+    checkTokenUserById(id,token);
     return service.readTripsByPassenger(id);
   }
 
 
-  private void CheckTokenUserById(int id, String token){
+
+  private void checkTokenUserById(int id, String token){
     String userEmail = service.verify(token);
     User user = readUserById(id);
     if(!userEmail.equals(user.getEmail())) throw new ResponseStatusException(HttpStatus.FORBIDDEN);
   }
 
-  private void CheckTokenUserByEmail(String email, String token){
+  private void checkTokenUserByEmail(String email, String token){
     String userEmail = service.verify(token);
     if(!userEmail.equals(email)) throw new ResponseStatusException(HttpStatus.FORBIDDEN);
   }

@@ -47,7 +47,7 @@ public class GatewayController {
 
   @PutMapping("/users/{id}")
   void updateUser(@PathVariable int id, @RequestBody User user, @RequestHeader("Authorization") String token){
-    if (user.getId() != id) throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+    if (user.getId() != id) throw new ResponseStatusException(HttpStatus.FORBIDDEN);
 
     String userEmail = service.verify(token);
     if (!userEmail.equals(user.getEmail())) throw new ResponseStatusException(HttpStatus.FORBIDDEN);
@@ -55,5 +55,11 @@ public class GatewayController {
     service.updateUser(id, user);
   }
 
-
+  @DeleteMapping("/users/{id}")
+  void deleteUser(@PathVariable int id, @RequestHeader("Authorization") String token){
+    String userEmail = service.verify(token);
+    User user = readUserById(id);
+    if(!user.getEmail().equals(userEmail)) throw new ResponseStatusException(HttpStatus.FORBIDDEN);
+    service.deleteUser(id);
+  }
 }

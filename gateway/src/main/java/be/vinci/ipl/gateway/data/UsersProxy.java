@@ -1,7 +1,6 @@
 package be.vinci.ipl.gateway.data;
 
 import be.vinci.ipl.gateway.models.NewUser;
-import be.vinci.ipl.gateway.models.NoIdUser;
 import be.vinci.ipl.gateway.models.User;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Repository;
@@ -23,8 +22,8 @@ public interface UsersProxy {
   @PutMapping("/users/{id}")
   void updateUser(@PathVariable int id, @RequestBody User user);
 
-  @DeleteMapping("/users/{email}")
-  void deleteUser(@PathVariable String email);
+  @DeleteMapping("/users/{id}")
+  void deleteUser(@PathVariable int id);
 
 }
 

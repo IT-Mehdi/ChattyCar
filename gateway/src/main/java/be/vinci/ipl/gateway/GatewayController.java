@@ -62,4 +62,9 @@ public class GatewayController {
     if(!user.getEmail().equals(userEmail)) throw new ResponseStatusException(HttpStatus.FORBIDDEN);
     service.deleteUser(id);
   }
+
+  @GetMapping("/users/{id}/driver")
+  Iterable<Trip> readTripsByDriver(@PathVariable int id){
+    return service.readTripsByDriver(id);
+  }
 }

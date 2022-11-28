@@ -4,6 +4,7 @@ import be.vinci.ipl.gateway.data.AuthenticationProxy;
 import be.vinci.ipl.gateway.data.TripsProxy;
 import be.vinci.ipl.gateway.data.UsersProxy;
 import be.vinci.ipl.gateway.models.Credentials;
+import be.vinci.ipl.gateway.models.Trip;
 import be.vinci.ipl.gateway.models.User;
 import be.vinci.ipl.gateway.models.NewUser;
 import org.springframework.stereotype.Service;
@@ -56,6 +57,10 @@ public class GatewayService {
     User userEmail = readUserById(id);
     authenticationProxy.deleteCredentials(userEmail.getEmail());
     usersProxy.deleteUser(id);
+  }
+
+  Iterable<Trip> readTripsByDriver(int id){
+    return tripsProxy.readTripsByDriver(id);
   }
 
 

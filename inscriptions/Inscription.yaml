@@ -39,9 +39,9 @@ paths:
           description: No trip found with this ID
         201:
           description: Trip's inscriptions are deleted
-  /inscriptions/passengers/{user_id}:
+  /inscriptions/passengers/{passenger_id}:
     parameters:
-      - name: user_id
+      - name: passenger_id
         in: path
         required: true
         schema:
@@ -129,6 +129,16 @@ paths:
 
     put:
         summary: Update inscription
+        parameters:
+          - name: status
+            in: query
+            required: true
+            schema:
+              type: string
+              enum:
+                - accepted
+                - refused
+            description: New status of the passenger
         responses:
             401:
               description: Missing authentication

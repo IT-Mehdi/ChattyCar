@@ -1,0 +1,2 @@
+### Create one inscription
+POST http://localhost:9020/inscriptions/1/2

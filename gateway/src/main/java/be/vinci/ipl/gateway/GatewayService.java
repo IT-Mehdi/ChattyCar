@@ -4,8 +4,7 @@ import be.vinci.ipl.gateway.data.AuthenticationProxy;
 import be.vinci.ipl.gateway.data.UsersProxy;
 import be.vinci.ipl.gateway.models.Credentials;
 import be.vinci.ipl.gateway.models.User;
-import be.vinci.ipl.gateway.models.UserWithCredentials;
-import org.springframework.http.ResponseEntity;
+import be.vinci.ipl.gateway.models.NewUser;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -27,7 +26,7 @@ public class GatewayService {
     return authenticationProxy.verify(token);
   }
 
-  public User createUser(UserWithCredentials user) {
+  public User createUser(NewUser user) {
     authenticationProxy.createCredentials(user.toCredentials());
 //    return usersProxy.createUser(user.toUser());
     return new User(0,user.getEmail(), user.getFirstname(), user.getLastname());

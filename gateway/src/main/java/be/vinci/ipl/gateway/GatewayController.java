@@ -1,7 +1,6 @@
 package be.vinci.ipl.gateway;
 
 import be.vinci.ipl.gateway.models.*;
-import javax.ws.rs.PathParam;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -23,7 +22,7 @@ public class GatewayController {
   }
 
   @PostMapping("/users")
-  User createUser(@RequestBody UserWithCredentials credentials) {
+  User createUser(@RequestBody NewUser credentials) {
     return service.createUser(credentials);
   }
 

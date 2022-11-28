@@ -67,7 +67,11 @@ public class GatewayController {
     return service.readTripsByPassenger(id);
   }
 
-
+  @PostMapping("/trips")
+  public Trip createTrip(@RequestBody NewTrip newTrip, @RequestHeader("Authorization") String token){
+    checkTokenUserById(newTrip.getDriver_id(), token);
+    return service.createTrip(newTrip);
+  }
 
   private void checkTokenUserById(int id, String token){
     String userEmail = service.verify(token);

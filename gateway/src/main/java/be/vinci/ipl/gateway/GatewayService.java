@@ -4,6 +4,7 @@ import be.vinci.ipl.gateway.data.AuthenticationProxy;
 import be.vinci.ipl.gateway.data.TripsProxy;
 import be.vinci.ipl.gateway.data.UsersProxy;
 import be.vinci.ipl.gateway.models.Credentials;
+import be.vinci.ipl.gateway.models.NewTrip;
 import be.vinci.ipl.gateway.models.Trip;
 import be.vinci.ipl.gateway.models.User;
 import be.vinci.ipl.gateway.models.NewUser;
@@ -65,6 +66,10 @@ public class GatewayService {
 
   public Iterable<Trip> readTripsByPassenger(int id){
     return tripsProxy.readTripsByPassenger(id);
+  }
+
+  public Trip createTrip(NewTrip newTrip){
+    return tripsProxy.createTrip(newTrip);
   }
 
 

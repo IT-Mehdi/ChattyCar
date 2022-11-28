@@ -1,5 +1,6 @@
 package be.vinci.ipl.gateway.data;
 
+import be.vinci.ipl.gateway.models.NewTrip;
 import be.vinci.ipl.gateway.models.NewUser;
 import be.vinci.ipl.gateway.models.Trip;
 import be.vinci.ipl.gateway.models.User;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 public interface TripsProxy {
 
   @PostMapping("/trips")
-  Trip createTrip(@RequestBody Trip trip);
+  Trip createTrip(@RequestBody NewTrip trip);
 
   @GetMapping("/trips")
   List<Trip> readTrips(@RequestParam String departure_date, @RequestParam double originLat,

@@ -1,0 +1,14 @@
+### Read one
+GET http://localhost:9090/trips/1
+
+### Read all
+GET http://localhost:9090/trips
+
+### Delete one
+DELETE http://localhost:9090/trips/1
+
+### Read all of driver
+GET http://localhost:9090/trips/driver/3
+
+### Delete all trips of driver
+DELETE http://localhost:9090/trips/driver/3

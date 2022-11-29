@@ -33,5 +33,15 @@ public class NotificationsController {
         service.deleteFromUser(id);
     }
 
+    @GetMapping("/notifications/trips/{id}")
+    public Iterable<Notification> readFrom(@PathVariable long id){
+        return service.readFromTrip(id);
+    }
+
+    @DeleteMapping("/notifications/trips/{id}")
+    public void deleteFromUser(@PathVariable long id){
+        service.deleteFromUser(id);
+    }
+
 
 }

@@ -11,4 +11,9 @@ public interface NotificationsRepository extends CrudRepository<Notification, Lo
 
     @Transactional
     void deleteByUser(long user);
+
+    Iterable<Notification> findByTrip(long id);
+
+    @Transactional
+    void deleteByTrip(long trip);
 }

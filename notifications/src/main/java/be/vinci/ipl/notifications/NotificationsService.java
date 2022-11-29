@@ -32,9 +32,26 @@ public class NotificationsService {
 
     /**
      * Deletes all notifications from a specific user from repository
-     * @param user the user to delete for
+     * @param user the user to delete the notifications from
      */
     public void deleteFromUser(long user) {
         repository.deleteByUser(user);
+    }
+
+    /**
+     * Reads all notifications from a specific trip in repository
+     * @param trip the trip to search for
+     * @return all notifications frm this trip
+     */
+    public Iterable<Notification> readFromTrip(long trip) {
+        return repository.findByTrip(trip);
+    }
+
+    /**
+     * Deletes all notifications from a specific trip from repository
+     * @param trip the trip to delete the notifications from
+     */
+    public void deleteFromTrip(long trip) {
+        repository.deleteByTrip(trip);
     }
 }

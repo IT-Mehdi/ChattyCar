@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Repository
 @FeignClient(name = "inscriptions")
@@ -37,6 +38,6 @@ public interface InscriptionProxy {
   void deleteInscription(@PathVariable("trip_id") int tripId, @PathVariable("passenger_id") int passengerId);
 
   @PutMapping("/inscriptions/{trip_id}/{passenger_id}")
-  void updateInscription(@PathVariable("trip_id") int tripId, @PathVariable("passenger_id") int passengerId);
+  void updateInscription(@PathVariable("trip_id") int tripId, @PathVariable("passenger_id") int passengerId, @RequestParam("status") String status);
 
 }

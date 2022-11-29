@@ -132,6 +132,22 @@ public class GatewayController {
     return service.readPassengerStatus(tripId, userId);
   }
 
+  @PutMapping("/trips/{trip_id}/passengers/{user_id}")
+  public void updatePassengerStatus(@PathVariable("trip_id") Integer tripId, @PathVariable("user_id") Integer userId,
+      @RequestBody String status, @RequestHeader("Authorization") String token){
+    checkUserTokenById(userId, token);
+
+    try{
+      service.readTripById(tripId);
+      service.readUserById(userId);
+    }catch (Exception e){
+      throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Trip or user not found");
+    }
+
+    service.updatePassengerStatus(tripId, userId, status);
+    throw new ResponseStatusException(HttpStatus.OK, "Passenger status updated");
+  }
+
   private void checkUserTokenById(int id, String token){
     String userEmail = service.verify(token);
     User user = service.readUserById(id);

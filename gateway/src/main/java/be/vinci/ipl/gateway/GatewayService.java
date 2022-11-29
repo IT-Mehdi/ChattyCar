@@ -101,4 +101,8 @@ public class GatewayService {
   public void createInscription(int tripId, int passengerId){
     inscriptionProxy.createInscription(tripId, passengerId);
   }
+
+  public void updatePassengerStatus(int idTrip, int idPassenger, String status){
+    inscriptionProxy.updateInscription(idTrip, idPassenger, status);
+  }
 }

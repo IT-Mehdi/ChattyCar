@@ -7,27 +7,14 @@ servers:
   - url: 'https'
 paths:
   /trips/position:
-    get:
+    post:
       summary: "Retrieve the distance between the departure and destination"
-      tags:
-        - positions
-      parameters:
-        - name: params
-          in: query
-          description: '{"originLatitude":"50.36","originLongitude":"4.56","destLatitude":"50.36","destLongitude":"4.56"}'
-          required: true
-          schema:
-            type: object
-            properties:
-              originLatitude:
-                type: "number"
-              originLongitude:
-                type: "number"
-              destLatitude:
-                type: "number"
-              destLongitude:
-                type: "number"
-
+      requestBody:
+        description: Position of the trip
+        content:
+          'application/json':
+            schema:
+              $ref: '#/components/schemas/positionTrip'
       responses:
         400:
           description: Information in request is not correct
@@ -42,6 +29,35 @@ components:
   schemas:
 
     distance:
-      type: string
+      type: number
+      properties:
+        distance:
+          type: number
       example:
-        89.3
+        distance: 89.3
+
+    position:
+      type: object
+      properties:
+        latitude:
+          type: number
+        longitude:
+          type: number
+      example:
+        latitude: 50.849372
+        longitude: 4.451009
+
+    positionTrip:
+      type: object
+      properties:
+        origin:
+          $ref: '#/components/schemas/position'
+        destination:
+          $ref: '#/components/schemas/position'
+      example:
+        origin:
+          latitude: 50.849372
+          longitude: 4.451009
+        destination:
+          latitude: 50.849372
+          longitude: 4.451009

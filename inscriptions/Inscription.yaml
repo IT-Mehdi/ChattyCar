@@ -137,6 +137,8 @@ components:
     inscription:
       type: object
       properties:
+        id:
+          type: integer
         trip_id:
           type: integer
         passenger_id:
@@ -148,6 +150,7 @@ components:
             - accepted
             - refused
       example:
+        id: 1
         trip_id: 38
         passenger_id: 2
         status: pending

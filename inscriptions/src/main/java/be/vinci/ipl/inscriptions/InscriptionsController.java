@@ -125,7 +125,7 @@ public class InscriptionsController {
    */
   @PutMapping("/inscriptions/{tripId}/{passenger_id}")
   public void editStatus(@PathVariable("passenger_id") Integer passengerId,@PathVariable("tripId") Integer tripId, @RequestParam(required = true) String status){
-    if (passengerId == null || tripId == null) {
+    if (passengerId == null || tripId == null || (!status.equals("accepted") && !status.equals("refused"))) {
       throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
     }
     Inscription inscriptionEdited = service.editInscriptionStatus(tripId,passengerId,status);

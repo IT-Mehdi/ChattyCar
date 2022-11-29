@@ -9,7 +9,9 @@ import be.vinci.ipl.inscriptions.models.Trip;
 import be.vinci.ipl.inscriptions.models.PassengerTrips;
 import be.vinci.ipl.inscriptions.models.User;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.TreeSet;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -35,11 +37,11 @@ public class InscriptionsService {
           List<User> pending = new ArrayList<>();
           for(Inscription inscription : inscriptions){
               if(inscription.getStatus().equals("accepted")){
-                  accepted.add(usersProxy.getUserById(inscription.getPassengerId()));
+                  accepted.add(usersProxy.readOne(inscription.getPassengerId()));
               }else if(inscription.getStatus().equals("refused")){
-                  refused.add(usersProxy.getUserById(inscription.getPassengerId()));
+                  refused.add(usersProxy.readOne(inscription.getPassengerId()));
               }else{
-                  pending.add(usersProxy.getUserById(inscription.getPassengerId()));
+                  pending.add(usersProxy.readOne(inscription.getPassengerId()));
               }
           }
           return new Passengers(pending,accepted,refused);
@@ -61,7 +63,7 @@ public class InscriptionsService {
         List<Trip> accepted = new ArrayList<>();
         List<Trip> refused = new ArrayList<>();
         for (Inscription inscription : inscriptions) {
-          Trip trip = tripsProxy.getTrip(inscription.getTripId());
+          Trip trip = tripsProxy.getTripById(inscription.getTripId());
           if(inscription.getStatus().equals("pending")) pending.add(trip);
           else if(inscription.getStatus().equals("accepted")) accepted.add(trip);
           else refused.add(trip);

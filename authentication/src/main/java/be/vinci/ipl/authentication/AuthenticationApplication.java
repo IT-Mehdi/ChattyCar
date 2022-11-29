@@ -1,4 +1,4 @@
-package be.vinci.ipl.chattycar.trips;
+package be.vinci.ipl.authentication;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,10 +6,10 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 @SpringBootApplication
 @EnableEurekaClient
-public class TripsApplication {
+public class AuthenticationApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(TripsApplication.class, args);
-    }
+  public static void main(String[] args) {
+    SpringApplication.run(AuthenticationApplication.class, args);
+  }
 
 }

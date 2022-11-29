@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository;
 @FeignClient(name = "trips")
 public interface TripsProxy {
 
+
+
 }

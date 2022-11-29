@@ -91,6 +91,12 @@ public class GatewayController {
     service.deleteTrip(id);
   }
 
+  @GetMapping("/trips/{id}/passengers")
+  public Passengers readAllPassengersTrip(@PathVariable Integer id){
+    return service.readAllPassengersTrip(id);
+  }
+
+
   private void checkUserTokenById(int id, String token){
     String userEmail = service.verify(token);
     User user = service.readUserById(id);

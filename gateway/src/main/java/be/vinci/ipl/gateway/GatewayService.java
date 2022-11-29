@@ -1,10 +1,12 @@
 package be.vinci.ipl.gateway;
 
 import be.vinci.ipl.gateway.data.AuthenticationProxy;
+import be.vinci.ipl.gateway.data.InscriptionProxy;
 import be.vinci.ipl.gateway.data.TripsProxy;
 import be.vinci.ipl.gateway.data.UsersProxy;
 import be.vinci.ipl.gateway.models.Credentials;
 import be.vinci.ipl.gateway.models.NewTrip;
+import be.vinci.ipl.gateway.models.Passengers;
 import be.vinci.ipl.gateway.models.Trip;
 import be.vinci.ipl.gateway.models.User;
 import be.vinci.ipl.gateway.models.NewUser;
@@ -17,12 +19,14 @@ public class GatewayService {
   private final AuthenticationProxy authenticationProxy;
   private final UsersProxy usersProxy;
   private final TripsProxy tripsProxy;
+  private final InscriptionProxy inscriptionProxy;
 
   public GatewayService(AuthenticationProxy authenticationProxy, UsersProxy usersProxy,
-      TripsProxy tripsProxy) {
+      TripsProxy tripsProxy, InscriptionProxy inscriptionProxy) {
     this.authenticationProxy = authenticationProxy;
     this.usersProxy = usersProxy;
     this.tripsProxy = tripsProxy;
+    this.inscriptionProxy = inscriptionProxy;
   }
 
   public String connect(Credentials credentials) {
@@ -85,5 +89,9 @@ public class GatewayService {
 
   public void deleteTrip(int id){
     tripsProxy.deleteTripById(id);
+  }
+
+  public Passengers readAllPassengersTrip(int id){
+    return inscriptionProxy.readAllPassengersTrip(id);
   }
 }

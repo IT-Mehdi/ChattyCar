@@ -14,8 +14,8 @@ public class UsersController {
     }
 
     @PostMapping("/users")
-    public ResponseEntity<User> createOne(@RequestParam String email, @RequestBody NoIdUser user) {
-        if (user.getEmail() == null || !user.getEmail().equals(email) || user.getLastname() == null || user.getFirstname() == null) {
+    public ResponseEntity<User> createOne(@RequestBody NoIdUser user) {
+        if (user.getEmail() == null || user.getLastname() == null || user.getFirstname() == null) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
         User createdUser = service.createOne(user);

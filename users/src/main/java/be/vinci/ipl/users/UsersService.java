@@ -1,5 +1,8 @@
 package be.vinci.ipl.users;
 
+import be.vinci.ipl.users.data.UsersRepository;
+import be.vinci.ipl.users.models.NoIdUser;
+import be.vinci.ipl.users.models.User;
 import org.springframework.stereotype.Service;
 
 @Service

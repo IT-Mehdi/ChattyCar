@@ -1,4 +1,4 @@
-package be.vinci.ipl.users;
+package be.vinci.ipl.users.models;
 
 import lombok.*;
 

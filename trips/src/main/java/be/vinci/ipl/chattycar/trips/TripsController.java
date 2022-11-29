@@ -15,19 +15,24 @@ public class TripsController {
     }
 
     @PostMapping("/trips")
-    public Trip createOne(@RequestBody Trip trip) {
-        if (trip.getId() < 0 || trip.getDestination() == null || trip.getOrigin() == null
+    public ResponseEntity<Trip> createOne(@RequestBody Trip trip) {
+        if (trip.getDestination() == null || trip.getOrigin() == null
                 || trip.getDeparture() == null || trip.getDriverId() < 0) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
-        boolean created = service.createOne(trip);
-        if (!created) throw new ResponseStatusException(HttpStatus.CONFLICT);
-        return trip;
+        service.createOne(trip);
+        return new ResponseEntity<>(trip, HttpStatus.CREATED);
     }
 
     @GetMapping("/trips")
     public Iterable<Trip> readAll() {
-        return service.readAll();
+        Iterable<Trip> response = service.readAll();
+        for(Trip trip : response) {
+            if(trip.getOrigin().getLatitude() < 0 || trip.getOrigin().getLongitude() < 0
+                    || trip.getDestination().getLatitude() < 0 || trip.getDestination().getLongitude() < 0)
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        }
+        return response;
     }
 
     @GetMapping("/trips/{id}")

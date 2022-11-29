@@ -16,7 +16,7 @@ paths:
         content:
           'application/json':
             schema:
-              $ref: '#/components/schemas/trip'
+              $ref: '#/components/schemas/newTrip'
       responses:
         201:
           description: Trip is created, sent trip created with its assigned ID

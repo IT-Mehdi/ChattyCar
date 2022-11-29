@@ -39,9 +39,9 @@ public class InscriptionsController {
    * @param tripId the id of the passenger
    */
   @DeleteMapping("/inscriptions/{trip_id}")
-  public void deleteAllPassengerOfATrip(@PathVariable("trip_id") Integer tripId){
+  public ResponseEntity<Void> deleteAllPassengerOfATrip(@PathVariable("trip_id") Integer tripId){
     if(!service.deleteAllInscriptionOfATrip(tripId)) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No passengers found for this trip");
-    throw new ResponseStatusException(HttpStatus.OK, "All passengers deleted");
+    return new ResponseEntity<>(HttpStatus.OK);
   }
 
   /**
@@ -64,9 +64,9 @@ public class InscriptionsController {
    * @param passenger_id the id of the passenger
    */
   @DeleteMapping("/inscriptions/passengers/{passenger_id}")
-  public void deleteAllTrips(@PathVariable("passenger_id") Integer passenger_id) {
+  public ResponseEntity<Void> deleteAllTrips(@PathVariable("passenger_id") Integer passenger_id) {
     if(!service.deleteAllInscriptionOfAPassenger(passenger_id))throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No inscriptions found for this passenger");
-    throw new ResponseStatusException(HttpStatus.ACCEPTED, "All inscriptions deleted");
+    return new ResponseEntity<>(HttpStatus.ACCEPTED);
   }
 
   /**
@@ -76,13 +76,10 @@ public class InscriptionsController {
    * @return the inscription created
    */
   @PostMapping("/inscriptions/{tripId}/{passenger_id}")
-  public ResponseEntity<Inscription> createOne(@PathVariable("passenger_id") Integer passengerId,@PathVariable("tripId") Integer tripId) {
-    if (passengerId == null || tripId == null) {
-      throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
-    }
+  public ResponseEntity<Void> createOne(@PathVariable("passenger_id") Integer passengerId,@PathVariable("tripId") Integer tripId) {
     Inscription inscription = service.createInscription(tripId, passengerId);
-    if (inscription == null) throw new ResponseStatusException(HttpStatus.CONFLICT);
-    return new ResponseEntity<>(inscription, HttpStatus.CREATED);
+    if (inscription == null) throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"User is already registered for this trip");
+    return new ResponseEntity<>(HttpStatus.CREATED);
   }
 
   /**
@@ -107,14 +104,14 @@ public class InscriptionsController {
    * @param tripId the id of the trip
    */
   @DeleteMapping("/inscriptions/{tripId}/{passenger_id}")
-  public void deleteOne(@PathVariable("passenger_id") Integer passengerId,@PathVariable("tripId") Integer tripId){
+  public ResponseEntity<Void> deleteOne(@PathVariable("passenger_id") Integer passengerId,@PathVariable("tripId") Integer tripId){
     if (passengerId == null || tripId == null) {
       throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
     }
     Inscription inscription = service.getInscription(tripId, passengerId);
     if (inscription == null) throw new ResponseStatusException(HttpStatus.NOT_FOUND);
     service.deleteInscription(tripId, passengerId);
-    throw new ResponseStatusException(HttpStatus.ACCEPTED,"Inscription deleted");
+    return new ResponseEntity<>(HttpStatus.ACCEPTED);
   }
 
   /**
@@ -124,13 +121,13 @@ public class InscriptionsController {
    * @param status the new status
    */
   @PutMapping("/inscriptions/{tripId}/{passenger_id}")
-  public void editStatus(@PathVariable("passenger_id") Integer passengerId,@PathVariable("tripId") Integer tripId, @RequestParam(required = true) String status){
+  public ResponseEntity<Void> editStatus(@PathVariable("passenger_id") Integer passengerId,@PathVariable("tripId") Integer tripId, @RequestParam(required = true) String status){
     if (passengerId == null || tripId == null || (!status.equals("accepted") && !status.equals("refused"))) {
       throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
     }
     Inscription inscriptionEdited = service.editInscriptionStatus(tripId,passengerId,status);
     if (inscriptionEdited == null) throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-    throw new ResponseStatusException(HttpStatus.OK,"Inscription edited");
+    return new ResponseEntity<>(HttpStatus.OK);
   }
 
 }

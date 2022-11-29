@@ -101,6 +101,22 @@ public class GatewayController {
     return service.readAllPassengersTrip(id);
   }
 
+  @PostMapping("/trips/{trip_id}/passengers/{user_id}")
+  public void createInscription(@PathVariable("trip_id") Integer tripId, @PathVariable("user_id") Integer userId,
+      @RequestHeader("Authorization") String token){
+    checkUserTokenById(userId, token);
+
+    try{
+      service.readTripById(tripId);
+      service.readUserById(userId);
+    }catch (Exception e){
+      throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Trip or user not found");
+    }
+
+    service.createInscription(tripId, userId);
+    throw new ResponseStatusException(HttpStatus.CREATED, "User added as pending passenger");
+  }
+
 
   private void checkUserTokenById(int id, String token){
     String userEmail = service.verify(token);

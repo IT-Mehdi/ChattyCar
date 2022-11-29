@@ -105,6 +105,9 @@ paths:
                 $ref: '#/components/schemas/trip'
     delete:
       summary: Delete trip
+      security:
+        - authentication:
+            - driver
       responses:
         404:
           description: No trip found with this ID

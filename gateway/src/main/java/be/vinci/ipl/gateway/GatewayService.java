@@ -95,6 +95,9 @@ public class GatewayService {
     return inscriptionProxy.readAllPassengersTrip(id);
   }
 
+  public String readPassengerStatus(int idTrip, int idPassenger){
+    return inscriptionProxy.readInscription(idTrip, idPassenger);
+  }
   public void createInscription(int tripId, int passengerId){
     inscriptionProxy.createInscription(tripId, passengerId);
   }

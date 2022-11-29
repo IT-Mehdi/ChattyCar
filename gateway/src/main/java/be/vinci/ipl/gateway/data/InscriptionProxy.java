@@ -31,7 +31,7 @@ public interface InscriptionProxy {
   Inscription createInscription(@PathVariable("trip_id") int tripId, @PathVariable("passenger_id") int passengerId);
 
   @GetMapping("/inscriptions/{trip_id}/{passenger_id}")
-  Inscription readInscription(@PathVariable("trip_id") int tripId, @PathVariable("passenger_id") int passengerId);
+  String readInscription(@PathVariable("trip_id") int tripId, @PathVariable("passenger_id") int passengerId);
 
   @DeleteMapping("/inscriptions/{trip_id}/{passenger_id}")
   void deleteInscription(@PathVariable("trip_id") int tripId, @PathVariable("passenger_id") int passengerId);

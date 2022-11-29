@@ -7,14 +7,14 @@ import org.springframework.stereotype.Repository;
 import javax.transaction.Transactional;
 
 @Repository
-public interface NotificationsRepository extends CrudRepository<Notification, Long>{
-    Iterable<Notification> findByUser(long id);
+public interface NotificationsRepository extends CrudRepository<Notification, Integer>{
+    Iterable<Notification> findByUser(int id);
 
     @Transactional
-    void deleteByUser(long user);
+    void deleteByUser(int user);
 
-    Iterable<Notification> findByTrip(long id);
+    Iterable<Notification> findByTrip(int id);
 
     @Transactional
-    void deleteByTrip(long trip);
+    void deleteByTrip(int trip);
 }

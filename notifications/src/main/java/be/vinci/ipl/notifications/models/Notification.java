@@ -15,8 +15,8 @@ import javax.persistence.Id;
 @Entity(name = "notifications")
 public class Notification {
     @Id
-    private long user_id;
-    private long trip_id;
+    private int user_id;
+    private int trip_id;
     private String date;
     private String notification_text;
 }

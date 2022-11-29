@@ -4,7 +4,6 @@ import be.vinci.ipl.notifications.data.NotificationsRepository;
 import be.vinci.ipl.notifications.data.TripsProxy;
 import be.vinci.ipl.notifications.data.UsersProxy;
 import be.vinci.ipl.notifications.models.Notification;
-import be.vinci.ipl.notifications.models.User;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -35,7 +34,7 @@ public class NotificationsService {
      * @param user the user to search for
      * @return all notifications from this user or false if user doesn't exist
      */
-    public Iterable<Notification> readFromUser(long user){
+    public Iterable<Notification> readFromUser(int user){
         if (usersProxy.readOne(user) == null) return null;
         return repository.findByUser(user);
     }
@@ -43,9 +42,9 @@ public class NotificationsService {
     /**
      * Deletes all notifications from a specific user from repository
      * @param user the user to delete the notifications from
-     * @return True if succesfuly deleted, false if user doesn't exist
+     * @return True if successfully deleted, false if user doesn't exist
      */
-    public boolean deleteFromUser(long user) {
+    public boolean deleteFromUser(int user) {
         if (usersProxy.readOne(user) == null) return false;
         repository.deleteByUser(user);
         return true;
@@ -56,20 +55,18 @@ public class NotificationsService {
      * @param trip the trip to search for
      * @return all notifications frm this trip or null if trip doesn't exist
      */
-    public Iterable<Notification> readFromTrip(long trip) {
-        int tripInt = Math.toIntExact(trip);
-        if (tripsProxy.readOne(tripInt) == null) return null;
+    public Iterable<Notification> readFromTrip(int trip) {
+        if (tripsProxy.readOne(trip) == null) return null;
         return repository.findByTrip(trip);
     }
 
     /**
      * Deletes all notifications from a specific trip from repository
      * @param trip the trip to delete the notifications from
-     * @return True if succesfuly deleted, false if trip doesn't exist
+     * @return True if successfully deleted, false if trip doesn't exist
      */
-    public boolean deleteFromTrip(long trip) {
-        int tripInt = Math.toIntExact(trip);
-        if (tripsProxy.readOne(tripInt) == null) return false;
+    public boolean deleteFromTrip(int trip) {
+        if (tripsProxy.readOne(trip) == null) return false;
         repository.deleteByTrip(trip);
         return true;
     }

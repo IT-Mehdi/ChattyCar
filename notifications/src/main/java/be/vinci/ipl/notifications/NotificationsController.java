@@ -25,27 +25,27 @@ public class NotificationsController {
     }
 
     @GetMapping("/notifications/users/{id}")
-    public Iterable<Notification> readFromUser(@PathVariable long id){
+    public Iterable<Notification> readFromUser(@PathVariable int id){
         Iterable<Notification> notifications = service.readFromUser(id);
         if (notifications == null) throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         return notifications;
     }
 
     @DeleteMapping("/notifications/users/{id}")
-    public void deleteFromUser(@PathVariable long id){
+    public void deleteFromUser(@PathVariable int id){
         Boolean ok = service.deleteFromUser(id);
         if (!ok) throw new ResponseStatusException(HttpStatus.NOT_FOUND);
     }
 
     @GetMapping("/notifications/trips/{id}")
-    public Iterable<Notification> readFromTrip(@PathVariable long id){
+    public Iterable<Notification> readFromTrip(@PathVariable int id){
         Iterable<Notification> notifications = service.readFromTrip(id);
         if (notifications == null) throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         return notifications;
     }
 
     @DeleteMapping("/notifications/trips/{id}")
-    public void deleteFromTrip(@PathVariable long id){
+    public void deleteFromTrip(@PathVariable int id){
         Boolean ok = service.deleteFromTrip(id);
         if (!ok) throw new ResponseStatusException(HttpStatus.NOT_FOUND);
     }

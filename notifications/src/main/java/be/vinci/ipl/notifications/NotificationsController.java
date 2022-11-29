@@ -24,7 +24,7 @@ public class NotificationsController {
     }
 
     @GetMapping("/notifications/users/{id}")
-    public Iterable<Notification> readFrom(@PathVariable long id){
+    public Iterable<Notification> readFromUser(@PathVariable long id){
         return service.readFromUser(id);
     }
 
@@ -34,12 +34,12 @@ public class NotificationsController {
     }
 
     @GetMapping("/notifications/trips/{id}")
-    public Iterable<Notification> readFrom(@PathVariable long id){
+    public Iterable<Notification> readFromTrip(@PathVariable long id){
         return service.readFromTrip(id);
     }
 
     @DeleteMapping("/notifications/trips/{id}")
-    public void deleteFromUser(@PathVariable long id){
+    public void deleteFromTrip(@PathVariable long id){
         service.deleteFromUser(id);
     }
 

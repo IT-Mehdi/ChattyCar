@@ -1,5 +1,6 @@
-package be.vinci.ipl.notifications;
+package be.vinci.ipl.notifications.data;
 
+import be.vinci.ipl.notifications.models.Notification;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

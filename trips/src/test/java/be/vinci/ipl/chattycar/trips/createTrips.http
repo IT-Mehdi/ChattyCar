@@ -3,7 +3,6 @@ POST http://localhost:9090/trips
 Content-Type: application/json
 
 {
-  "id": 1,
   "origin":{
     "latitude": 34.32,
     "longitude": 90.52
@@ -22,7 +21,6 @@ POST http://localhost:9090/trips
 Content-Type: application/json
 
 {
-  "id": 2,
   "origin":{
     "latitude": 22.34,
     "longitude": 14.22
@@ -41,7 +39,6 @@ POST http://localhost:9090/trips
 Content-Type: application/json
 
 {
-  "id": 3,
   "origin":{
     "latitude": 68.97,
     "longitude": 467.93

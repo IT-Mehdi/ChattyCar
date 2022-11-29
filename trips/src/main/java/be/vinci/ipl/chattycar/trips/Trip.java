@@ -16,6 +16,7 @@ import java.time.LocalDate;
 public class Trip {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Embedded
     @AttributeOverrides({

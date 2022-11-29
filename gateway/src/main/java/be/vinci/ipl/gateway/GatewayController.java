@@ -148,6 +148,22 @@ public class GatewayController {
     throw new ResponseStatusException(HttpStatus.OK, "Passenger status updated");
   }
 
+  @DeleteMapping("/trips/{trip_id}/passengers/{user_id}")
+  public void deletePassenger(@PathVariable("trip_id") Integer tripId, @PathVariable("user_id") Integer userId,
+      @RequestHeader("Authorization") String token){
+    checkUserTokenById(userId, token);
+
+    try{
+      service.readTripById(tripId);
+      service.readUserById(userId);
+    }catch (Exception e){
+      throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Trip or user not found");
+    }
+
+    service.deletePassenger(tripId, userId);
+    throw new ResponseStatusException(HttpStatus.OK, "Passenger deleted");
+  }
+
   private void checkUserTokenById(int id, String token){
     String userEmail = service.verify(token);
     User user = service.readUserById(id);

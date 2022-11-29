@@ -105,4 +105,8 @@ public class GatewayService {
   public void updatePassengerStatus(int idTrip, int idPassenger, String status){
     inscriptionProxy.updateInscription(idTrip, idPassenger, status);
   }
+
+  public void deletePassenger(int idTrip, int idPassenger){
+    inscriptionProxy.deleteInscription(idTrip, idPassenger);
+  }
 }

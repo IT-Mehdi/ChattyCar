@@ -11,7 +11,7 @@ Content-Type: application/json
     "latitude": 41.14,
     "longitude": 67.42
   },
-  "departure": "2013-10-21",
+  "departure": "2017-01-13",
   "driverId": 3,
   "availableSeating": 4
 }

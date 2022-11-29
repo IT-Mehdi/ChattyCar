@@ -50,9 +50,12 @@ public class TripsController {
 
     @GetMapping("/trips/driver/{id}")
     public Iterable<Trip> readAllTripOfTheDriver(@PathVariable int id) {
+        if(!service.driverExist(id))
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         return service.readAllTripOfTheDriver(id);
     }
 
+    //Probleme renvoie erreur 500
     @DeleteMapping("/trips/driver/{id}")
     public void deleteByDrivers(@PathVariable int id) {
         boolean found = service.deleteByDriverId(id);

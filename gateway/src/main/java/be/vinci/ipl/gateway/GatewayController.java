@@ -92,7 +92,12 @@ public class GatewayController {
   }
 
   @GetMapping("/trips/{id}/passengers")
-  public Passengers readAllPassengersTrip(@PathVariable Integer id){
+  public Passengers readAllPassengersTrip(@PathVariable Integer id, @RequestHeader("Authorization") String token){
+    Trip trip = service.readTripById(id);
+    String userEmail = service.verify(token);
+    User user = service.readUserByEmail(userEmail);
+
+    if(trip.getDriverId() != user.getId()) throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Not identified as the corresponding user");
     return service.readAllPassengersTrip(id);
   }
 

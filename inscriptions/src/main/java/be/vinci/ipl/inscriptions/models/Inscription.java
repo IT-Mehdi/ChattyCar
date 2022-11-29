@@ -20,7 +20,7 @@ import lombok.ToString;
 public class Inscription {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
+  private Integer id;
   private Integer tripId;
   private Integer passengerId;
   private String status;

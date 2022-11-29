@@ -1,4 +1,6 @@
 package be.vinci.ipl.inscriptions.models;
+
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -7,13 +9,11 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@ToString
-@NoArgsConstructor
 @AllArgsConstructor
-public class User {
-  private Integer id;
-  private String email;
-  private String firstname;
-  private String lastname;
-
+@NoArgsConstructor
+@ToString
+public class PassengerTrips {
+  List<Trip> pending;
+  List<Trip> accepted;
+  List<Trip> refused;
 }

@@ -31,13 +31,9 @@ paths:
     delete:
       summary: Delete all passengers of a trip
       responses:
-        401:
-          description: Missing authentication
-        403:
-          description: Not identified as the corresponding user
         404:
           description: No trip found with this ID
-        201:
+        202:
           description: Trip's inscriptions are deleted
   /inscriptions/passengers/{passenger_id}:
     parameters:
@@ -62,11 +58,9 @@ paths:
     delete:
         summary: Delete all trips of a passenger
         responses:
-            403:
-              description: Not identified as the corresponding user
             404:
               description: No passenger found with this ID
-            201:
+            202:
               description: Passenger's trips are deleted
 
 
@@ -96,13 +90,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/inscription'
         '400':
-          description: bad request
-        '401':
-          description: unauthorized
-        '403':
-          description: forbidden
-        '500':
-          description: internal server error
+          description: Bad request
+        '409':
+          description: Conflict
     get:
       summary: Get inscription
       responses:
@@ -118,13 +108,9 @@ paths:
     delete:
       summary: Delete inscription
       responses:
-        401:
-          description: Missing authentication
-        403:
-          description: Not identified as the corresponding user
         404:
           description: No inscription found with this ID
-        201:
+        202:
           description: Inscription is deleted
 
     put:
@@ -140,13 +126,9 @@ paths:
                 - refused
             description: New status of the passenger
         responses:
-            401:
-              description: Missing authentication
-            403:
-              description: Not identified as the corresponding user
             404:
               description: No inscription found with this ID
-            201:
+            200:
               description: Inscription is updated
 
 

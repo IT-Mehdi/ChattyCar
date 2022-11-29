@@ -1,2 +1,11 @@
 ### Create one inscription
 POST http://localhost:9020/inscriptions/1/2
+
+### Get status of inscription
+GET http://localhost:9020/inscriptions/1/2
+
+### Delete inscription
+DELETE http://localhost:9020/inscriptions/1/2
+
+### Update inscription status
+PUT http://localhost:9020/inscriptions/1/2?status=approved

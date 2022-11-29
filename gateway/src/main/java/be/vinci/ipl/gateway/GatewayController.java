@@ -69,7 +69,7 @@ public class GatewayController {
 
   @PostMapping("/trips")
   public Trip createTrip(@RequestBody NewTrip newTrip, @RequestHeader("Authorization") String token){
-    checkUserTokenById(newTrip.getDriver_id(), token);
+    checkUserTokenById(newTrip.getDriverId(), token);
     return service.createTrip(newTrip);
   }
 
@@ -93,7 +93,7 @@ public class GatewayController {
 
   private void checkUserTokenById(int id, String token){
     String userEmail = service.verify(token);
-    User user = readUserById(id);
+    User user = service.readUserById(id);
     if(!userEmail.equals(user.getEmail())) throw new ResponseStatusException(HttpStatus.FORBIDDEN);
   }
 

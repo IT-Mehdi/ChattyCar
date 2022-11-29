@@ -65,7 +65,9 @@ public class GatewayService {
   }
 
   public Iterable<Trip> readTripsByPassenger(int id){
-    return tripsProxy.readTripsByPassenger(id);
+    // inscription
+    // recolter les trips du passager et envoyer à trips
+    return null;
   }
 
   public Trip createTrip(NewTrip newTrip){

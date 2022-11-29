@@ -24,7 +24,7 @@ public class NewTrip {
   })
   private Position destination;
   private String departure;
-  private int driver_id;
-  private int available_seating;
+  private int driverId;
+  private int availableSeating;
 
 }

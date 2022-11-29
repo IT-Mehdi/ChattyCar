@@ -5,7 +5,6 @@
       <list>
         <option value="$PROJECT_DIR$/trips/pom.xml" />
         <option value="$PROJECT_DIR$/users/pom.xml" />
-        <option value="$PROJECT_DIR$/eureka_Server/pom.xml" />
         <option value="$PROJECT_DIR$/notifications/pom.xml" />
       </list>
     </option>

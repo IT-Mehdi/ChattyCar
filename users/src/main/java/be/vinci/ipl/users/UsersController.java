@@ -1,5 +1,7 @@
 package be.vinci.ipl.users;
 
+import be.vinci.ipl.users.models.NoIdUser;
+import be.vinci.ipl.users.models.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

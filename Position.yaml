@@ -1,0 +1,47 @@
+openapi: 3.0.3
+info:
+  title: Title
+  description: Title
+  version: 1.0.0
+servers:
+  - url: 'https'
+paths:
+  /trips/position:
+    get:
+      summary: "Retrieve the distance between the departure and destination"
+      tags:
+        - positions
+      parameters:
+        - name: params
+          in: query
+          description: '{"originLatitude":"50.36","originLongitude":"4.56","destLatitude":"50.36","destLongitude":"4.56"}'
+          required: true
+          schema:
+            type: object
+            properties:
+              originLatitude:
+                type: "number"
+              originLongitude:
+                type: "number"
+              destLatitude:
+                type: "number"
+              destLongitude:
+                type: "number"
+
+      responses:
+        400:
+          description: Information in request is not correct
+        200:
+          description: Sent trip position
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/distance'
+
+components:
+  schemas:
+
+    distance:
+      type: string
+      example:
+        89.3

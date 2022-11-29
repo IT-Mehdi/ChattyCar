@@ -80,4 +80,8 @@ public class GatewayService {
   public Trip readTripById(int id){
     return tripsProxy.readTripById(id);
   }
+
+  public void deleteTrip(int id){
+    tripsProxy.deleteTripById(id);
+  }
 }

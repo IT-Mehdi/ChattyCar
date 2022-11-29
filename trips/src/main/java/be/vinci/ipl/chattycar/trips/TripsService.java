@@ -14,7 +14,6 @@ public class TripsService {
     /**
      * Creates a trip in repository
      * @param trip the trip to create
-     * @return True if the trip could be created, false if it already existed
      */
     public void createOne(Trip trip) {
         repository.save(trip);
@@ -54,7 +53,6 @@ public class TripsService {
      * @return list of trips of the driver
      */
     public Iterable<Trip> readAllTripOfTheDriver(int driverId) {
-        //Verify if driver exist
         return repository.findByDriverId(driverId);
     }
 
@@ -64,9 +62,13 @@ public class TripsService {
      * @return True if trips are deleted, false if the driver couldn't be found
      */
     public boolean deleteByDriverId(int driverId) {
-        if(!repository.existsById(driverId)) return false;
+        if(!driverExist(driverId)) return false;
         repository.deleteByDriverId(driverId);
         return true;
+    }
+
+    public boolean driverExist(int driverId) {
+        return repository.existsById(driverId);
     }
 
 

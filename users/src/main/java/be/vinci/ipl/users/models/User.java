@@ -1,4 +1,4 @@
-package be.vinci.ipl.users;
+package be.vinci.ipl.users.models;
 
 import lombok.*;
 
@@ -13,7 +13,7 @@ import javax.persistence.*;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private int id;
     private String email;
     private String firstname;
     private String lastname;

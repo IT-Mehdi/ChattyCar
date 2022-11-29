@@ -51,3 +51,21 @@ Content-Type: application/json
   "driverId": 2,
   "availableSeating": 3
 }
+
+### Create 3
+POST http://localhost:9090/trips
+Content-Type: application/json
+
+{
+  "origin":{
+    "latitude": 68.97,
+    "longitude": 467.93
+  },
+  "destination":{
+    "latitude": 38.98,
+    "longitude": 463.98
+  },
+  "departure": "2015-10-21",
+  "driverId": 2,
+  "availableSeating": 3
+}

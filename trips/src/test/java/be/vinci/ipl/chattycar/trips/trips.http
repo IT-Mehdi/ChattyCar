@@ -1,5 +1,5 @@
 ### Read one
-GET http://localhost:9090/trips/1
+GET http://localhost:9090/trips/2
 
 ### Read all
 GET http://localhost:9090/trips

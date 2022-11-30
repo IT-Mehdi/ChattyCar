@@ -16,7 +16,7 @@ public class NotificationsController {
 
     @PostMapping("/notifications")
     public ResponseEntity<Notification> createOne(@RequestBody Notification notification){
-        if (notification.getUser_id() <0  || notification.getTrip_id() < 0 || notification.getDate() == null
+        if (notification.getUserId() <0  || notification.getTripId() < 0 || notification.getDate() == null
         || notification.getNotification_text() == null){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }

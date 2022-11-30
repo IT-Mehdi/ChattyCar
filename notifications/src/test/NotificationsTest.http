@@ -1,0 +1,22 @@
+### Create notification
+POST http://localhost:9010/notifications
+Content-Type: application/json
+
+{
+  "user_id": 12,
+  "trip_id": 38,
+  "date": "2022-10-24",
+  "notification_text": "Votre demande de voyage a été acceptée"
+}
+
+### Read All From User
+GET http://localhost:9010/notifications/users/12
+
+### Delete All From User
+DELETE http://localhost:9010/notifications/users/12
+
+### Read All From Trip
+GET http://localhost:9010/notifications/trips/38
+
+### Delete All From Trip
+DELETE http://localhost:9010/notifications/trips/38

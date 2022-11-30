@@ -1,5 +1,5 @@
 ### Read one
-GET http://localhost:9090/trips/2
+GET http://localhost:9090/trips/1
 
 ### Read all
 GET http://localhost:9090/trips
@@ -8,10 +8,10 @@ GET http://localhost:9090/trips
 DELETE http://localhost:9090/trips/1
 
 ### Read all of driver
-GET http://localhost:9090/trips/driver/3
+GET http://localhost:9090/trips/driver/2
 
 ### Delete all trips of driver
-DELETE http://localhost:9090/trips/driver/3
+DELETE http://localhost:9090/trips/driver/2
 
 ### Update number of seats available
-PUT http://localhost:9090/trips/inscription/2
+PUT http://localhost:9090/trips/inscription/3

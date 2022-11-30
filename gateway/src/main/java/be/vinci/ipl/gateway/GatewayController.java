@@ -1,7 +1,9 @@
 package be.vinci.ipl.gateway;
 
 import be.vinci.ipl.gateway.models.*;
+import java.util.List;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -32,21 +34,29 @@ public class GatewayController {
   }
 
   @GetMapping("/users/{id}")
-  public User readUserById(@PathVariable int id) {
+  public User readUserById(@PathVariable int id, @RequestHeader("Authorization") String token) {
+    checkUserTokenById(id, token);
     return service.readUserById(id);
   }
 
   @PutMapping("/users")
   public void updatePassword(@RequestBody Credentials credentials,
       @RequestHeader("Authorization") String token) {
+    if (credentials.getEmail() == null || credentials.getPassword() == null) {
+      throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
+          "Credentials in request are not correct");
+    }
     checkUserTokenByEmail(credentials.getEmail(), token);
     service.updateCredentials(credentials);
   }
 
   @PutMapping("/users/{id}")
-  public void updateUser(@PathVariable int id, @RequestBody User user,
+  public void updateUser(@PathVariable Integer id, @RequestBody User user,
       @RequestHeader("Authorization") String token) {
-    if (user.getId() != id) {
+    if (user.getEmail() == null || user.getFirstname() == null || user.getLastname() == null) {
+      throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User in request are not correct");
+    }
+    if (!user.getId().equals(id)) {
       throw new ResponseStatusException(HttpStatus.FORBIDDEN);
     }
     checkUserTokenByEmail(user.getEmail(), token);
@@ -54,70 +64,77 @@ public class GatewayController {
   }
 
   @DeleteMapping("/users/{id}")
-  public void deleteUser(@PathVariable int id, @RequestHeader("Authorization") String token) {
+  public void deleteUser(@PathVariable Integer id, @RequestHeader("Authorization") String token) {
     checkUserTokenById(id, token);
     service.deleteUser(id);
   }
 
   @GetMapping("/users/{id}/driver")
-  public Iterable<Trip> readTripsByDriver(@PathVariable int id,
+  public Iterable<Trip> readTripsByDriver(@PathVariable Integer id,
       @RequestHeader("Authorization") String token) {
     checkUserTokenById(id, token);
     return service.readTripsByDriver(id);
   }
 
   @GetMapping("/users/{id}/passenger")
-  public PassengerTrips readTripsByPassenger(@PathVariable int id,
+  public PassengerTrips readTripsByPassenger(@PathVariable Integer id,
       @RequestHeader("Authorization") String token) {
-    String userEmail = service.verify(token);
-    User user = service.readUserByEmail(userEmail);
-    if (user.getId() != id) {
-      throw new ResponseStatusException(HttpStatus.FORBIDDEN);
-    }
+    checkUserTokenById(id, token);
     return service.readTripsByPassenger(id);
   }
 
   @PostMapping("/trips")
   public Trip createTrip(@RequestBody NewTrip newTrip,
       @RequestHeader("Authorization") String token) {
+    if (newTrip.getDriverId() == null || newTrip.getDeparture() == null
+        || newTrip.getOrigin() == null || newTrip.getDestination() == null
+        || newTrip.getAvailableSeating() == null) {
+      throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Trip in request is not correct");
+    }
     checkUserTokenById(newTrip.getDriverId(), token);
     return service.createTrip(newTrip);
   }
 
   @GetMapping("/trips")
-  public Iterable<Trip> readTrips(@RequestParam String departure_date,
-      @RequestParam double originLat, @RequestParam double originLon,
-      @RequestParam double destinationLat, @RequestParam double destinationLon) {
+  public Iterable<Trip> readTrips(@RequestParam String departureDate,
+      @RequestParam Double originLat, @RequestParam Double originLon,
+      @RequestParam Double destinationLat, @RequestParam Double destinationLon) {
 
-    return service.readTrips(departure_date, originLat, originLon, destinationLat, destinationLon);
+    if ((originLat != null && originLon == null) || (originLat == null && originLon != null)) {
+      throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
+          "Both latitude and longitude should be specified for a position query");
+    }
+    if ((destinationLat != null && destinationLon == null)
+        || (destinationLat == null && destinationLon != null)) {
+      throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
+          "Both latitude and longitude should be specified for a position query");
+    }
+
+    return service.readTrips(departureDate, originLat, originLon, destinationLat, destinationLon);
   }
 
   @GetMapping("/trips/{id}")
-  public Trip readTripById(@PathVariable int id) {
+  public Trip readTripById(@PathVariable Integer id) {
     return service.readTripById(id);
   }
 
   @DeleteMapping("/trips/{id}")
-  public void deleteTrip(@PathVariable int id) {
+  public ResponseEntity<Void> deleteTrip(@PathVariable Integer id,
+      @RequestHeader("Authorization") String token) {
+    checkDriverToken(id, token);
     service.deleteTrip(id);
+    return new ResponseEntity<>(HttpStatus.CREATED);
   }
 
   @GetMapping("/trips/{id}/passengers")
   public Passengers readAllPassengersTrip(@PathVariable Integer id,
       @RequestHeader("Authorization") String token) {
-    Trip trip = service.readTripById(id);
-    String userEmail = service.verify(token);
-    User user = service.readUserByEmail(userEmail);
-
-    if (trip.getDriverId() != user.getId()) {
-      throw new ResponseStatusException(HttpStatus.FORBIDDEN,
-          "Not identified as the corresponding user");
-    }
+    checkDriverToken(id, token);
     return service.readAllPassengersTrip(id);
   }
 
   @PostMapping("/trips/{trip_id}/passengers/{user_id}")
-  public void createInscription(@PathVariable("trip_id") Integer tripId,
+  public ResponseEntity<Void> createInscription(@PathVariable("trip_id") Integer tripId,
       @PathVariable("user_id") Integer userId,
       @RequestHeader("Authorization") String token) {
     checkUserTokenById(userId, token);
@@ -133,7 +150,7 @@ public class GatewayController {
     //si une place dispo alors on diminue le nombre de place et on crée une inscription
 
     service.createInscription(tripId, userId); // on crée une inscription
-    throw new ResponseStatusException(HttpStatus.CREATED, "User added as pending passenger");
+    return new ResponseEntity<>(HttpStatus.CREATED);
   }
 
   @GetMapping("/trips/{trip_id}/passengers/{user_id}")
@@ -153,11 +170,24 @@ public class GatewayController {
   }
 
   @PutMapping("/trips/{trip_id}/passengers/{user_id}")
-  public void updatePassengerStatus(@PathVariable("trip_id") Integer tripId,
+  public ResponseEntity<Void> updatePassengerStatus(@PathVariable("trip_id") Integer tripId,
       @PathVariable("user_id") Integer userId,
       @RequestParam String status, @RequestHeader("Authorization") String token) {
     checkDriverToken(tripId, token);
 
+    Passengers user = service.readAllPassengersTrip(tripId);
+    User passenger = null;
+    List<User> pendingAcceptedUser = user.getPending();
+    pendingAcceptedUser.addAll(user.getAccepted());
+    for (User u : pendingAcceptedUser) {
+      if (u.getId().equals(userId)) {
+        passenger = u;
+      }
+    }
+    if (passenger == null) {
+      throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
+          "User is not a passenger, or is not in pending status, or status not in accepted value");
+    }
     try {
       service.readTripById(tripId);
       service.readUserById(userId);
@@ -166,14 +196,30 @@ public class GatewayController {
     }
 
     service.updatePassengerStatus(tripId, userId, status);
-    throw new ResponseStatusException(HttpStatus.OK, "Passenger status updated");
+    return new ResponseEntity<>(HttpStatus.OK);
   }
 
   @DeleteMapping("/trips/{trip_id}/passengers/{user_id}")
-  public void deletePassenger(@PathVariable("trip_id") Integer tripId,
+  public ResponseEntity<Void> deletePassenger(@PathVariable("trip_id") Integer tripId,
       @PathVariable("user_id") Integer userId,
       @RequestHeader("Authorization") String token) {
     checkDriverToken(tripId, token);
+
+    Passengers user = service.readAllPassengersTrip(tripId);
+    User passenger = null;
+    List<User> allPassenger = user.getPending();
+    allPassenger.addAll(user.getAccepted());
+    allPassenger.addAll(user.getRefused());
+
+    for (User u : allPassenger) {
+      if (u.getId().equals(userId)) {
+        passenger = u;
+      }
+    }
+    if (passenger == null) {
+      throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
+          "User is not a passenger");
+    }
 
     try {
       service.readTripById(tripId);
@@ -183,7 +229,7 @@ public class GatewayController {
     }
 
     service.deletePassenger(tripId, userId);
-    throw new ResponseStatusException(HttpStatus.OK, "Passenger deleted");
+    return new ResponseEntity<>(HttpStatus.OK);
   }
 
   @GetMapping("/users/{id}/notifications")

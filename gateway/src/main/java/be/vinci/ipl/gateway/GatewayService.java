@@ -81,9 +81,9 @@ public class GatewayService {
     return tripsProxy.createTrip(newTrip);
   }
 
-  public Iterable<Trip> readTrips(String departure_date, double originLat, double originLon,
+  public Iterable<Trip> readTrips(String departureDate, double originLat, double originLon,
       double destinationLat, double destinationLon){
-    return tripsProxy.readTrips( departure_date,  originLat,  originLon, destinationLat, destinationLon);
+    return tripsProxy.readTrips( departureDate,  originLat,  originLon, destinationLat, destinationLon);
   }
 
   public Trip readTripById(int id){

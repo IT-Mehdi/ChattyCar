@@ -28,9 +28,9 @@ public class NewTrip {
 
   @JsonProperty("driver_id")
   @Column(name = "driver_id")
-  private int driverId;
+  private Integer driverId;
   @JsonProperty("available_seating")
   @Column(name = "available_seating")
-  private int availableSeating;
+  private Integer availableSeating;
 
 }

@@ -7,7 +7,7 @@ public class Notification {
 
   @JsonProperty("user_id")
   @Column(name = "user_id")
-  private int userId;
+  private Integer userId;
 
   @JsonProperty("trip_id")
   @Column(name = "trip_id")

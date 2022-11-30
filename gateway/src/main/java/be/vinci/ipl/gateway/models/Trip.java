@@ -19,7 +19,7 @@ public class Trip {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private int id;
+  private Integer id;
   @Embedded
   @AttributeOverrides({
       @AttributeOverride(name = "latitude", column = @Column(name = "origin_latitude")),
@@ -37,9 +37,9 @@ public class Trip {
 
   @JsonProperty("driver_id")
   @Column(name = "driver_id")
-  private int driverId;
+  private Integer driverId;
   @JsonProperty("available_seating")
   @Column(name = "available_seating")
-  private int availableSeating;
+  private Integer availableSeating;
 
 }

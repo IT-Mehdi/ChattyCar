@@ -9,6 +9,6 @@ import lombok.*;
 @AllArgsConstructor
 public class Position {
 
-  private double latitude;
-  private double longitude;
+  private Double latitude;
+  private Double longitude;
 }

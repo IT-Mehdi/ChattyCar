@@ -1,0 +1,14 @@
+###Calculate Distance
+POST http://localhost:9005/trips/position
+Content-Type: application/json
+
+{
+  "origin":{
+    "latitude": 34.32,
+    "longitude": 24.09
+  },
+  "destination":{
+    "latitude": 41.14,
+    "longitude": 67.42
+  }
+}

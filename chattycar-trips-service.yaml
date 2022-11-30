@@ -122,7 +122,7 @@ paths:
         schema:
           type: integer
           example: 38
-        description: ID of the trip
+        description: ID of the driver
     get:
       summary: Get trips where user is the driver with a future departure date
       parameters:
@@ -152,6 +152,27 @@ paths:
           description: No driver found with this ID
         200:
           description: All trips are deleted
+
+  /trips/inscription/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          example: 38
+        description: ID of the trip
+    put:
+      summary: Decreases the number of available seats
+      responses:
+        400:
+          description: No trip found with this ID
+        200:
+          description: Return the trip with number of seats updated
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/trip'
 
 components:
 

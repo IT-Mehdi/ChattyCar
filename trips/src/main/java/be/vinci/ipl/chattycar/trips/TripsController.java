@@ -62,6 +62,16 @@ public class TripsController {
         if(!found) throw new ResponseStatusException(HttpStatus.NOT_FOUND);
     }
 
+    @PutMapping("/trips/inscription/{id}")
+    public Trip updateAvailableSeating(@PathVariable int id) {
+        Trip tripUpdated = service.readOne(id);
+        if(tripUpdated == null)
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        tripUpdated.setAvailableSeating(tripUpdated.getAvailableSeating() - 1);
+        service.updateAvailableSeating(tripUpdated);
+        return tripUpdated;
+    }
+
 
 
 }

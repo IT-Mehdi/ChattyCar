@@ -2,6 +2,8 @@ package be.vinci.ipl.chattycar.trips;
 
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class TripsService {
 
@@ -69,6 +71,10 @@ public class TripsService {
 
     public boolean driverExist(int driverId) {
         return repository.existsById(driverId);
+    }
+
+    public void updateAvailableSeating(Trip tripUpdated) {
+        repository.save(tripUpdated);
     }
 
 

@@ -1,5 +1,6 @@
 package be.vinci.ipl.gateway.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.persistence.*;
 import lombok.*;
 
@@ -24,7 +25,12 @@ public class NewTrip {
   })
   private Position destination;
   private String departure;
+
+  @JsonProperty("driver_id")
+  @Column(name = "driver_id")
   private int driverId;
+  @JsonProperty("available_seating")
+  @Column(name = "available_seating")
   private int availableSeating;
 
 }

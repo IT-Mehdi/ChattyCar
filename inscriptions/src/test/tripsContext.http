@@ -12,8 +12,8 @@ Content-Type: application/json
     "longitude": 67.42
   },
   "departure": "2017-01-13",
-  "driverId": 3,
-  "availableSeating": 4
+  "driver_id": 3,
+  "available_seating": 4
 }
 
 ### Create 2
@@ -30,8 +30,8 @@ Content-Type: application/json
     "longitude": 78.32
   },
   "departure": "2014-10-21",
-  "driverId": 3,
-  "availableSeating": 3
+  "driver_id": 3,
+  "available_seating": 3
 }
 
 ### Create 3

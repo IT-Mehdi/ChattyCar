@@ -15,7 +15,7 @@ import lombok.ToString;
 public class User {
   @JsonProperty("id")
   @Column(name = "id")
-  private int id;
+  private Integer id;
   @JsonProperty("email")
   @Column(name = "email")
   private String email;

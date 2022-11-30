@@ -18,7 +18,7 @@ import lombok.ToString;
 public class Trip {
   @JsonProperty("id")
   @Column(name = "id")
-  private int id;
+  private Integer id;
   @Embedded
   @AttributeOverrides({
       @AttributeOverride(name = "latitude", column = @Column(name = "origin_latitude")),
@@ -42,9 +42,9 @@ public class Trip {
   private LocalDate departure; //Si on veut utiliser ce param dans une route utiliser notation
   @JsonProperty("driver_id")
   @Column(name = "driver_id")
-  private int driverId;
+  private Integer driverId;
   @JsonProperty("available_seating")
   @Column(name = "available_seating")
-  private int availableSeating;
+  private Integer availableSeating;
 
 }

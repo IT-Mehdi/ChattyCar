@@ -193,6 +193,13 @@ public class GatewayController {
     return service.readUserNotifications(id);
   }
 
+  @DeleteMapping("/users/{id}/notifications")
+  public void deleteUserNotifications(@PathVariable int id,
+      @RequestHeader("Authorization") String token) {
+    checkUserTokenById(id, token);
+    service.deleteUserNotifications(id);
+  }
+
   private void checkUserTokenById(int id, String token) {
     String userEmail = service.verify(token);
     User user = service.readUserById(id);

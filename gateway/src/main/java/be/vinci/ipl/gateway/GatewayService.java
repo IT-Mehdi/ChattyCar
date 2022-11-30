@@ -116,4 +116,8 @@ public class GatewayService {
   public Iterable<Notification> readUserNotifications(int id){
     return notificationProxy.readUserNotifications(id);
   }
+
+  public void deleteUserNotifications(int id){
+    notificationProxy.deleteUserNotifications(id);
+  }
 }

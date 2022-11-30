@@ -20,11 +20,11 @@ public interface NotificationProxy {
   Iterable<Notification> readUserNotifications(@PathVariable int id);
 
   @DeleteMapping("/notifications/users/{id}")
-  void deleteAllNotificationsUser(@PathVariable int id);
+  void deleteUserNotifications(@PathVariable int id);
 
   @GetMapping("/notifications/trips/{id}")
   Iterable<Notification> readTripNotifications(@PathVariable int id);
 
   @DeleteMapping("notifications/trips/{id}")
-  void deleteAllNotificationsTrip(@PathVariable int id);
+  void deleteTripNotification(@PathVariable int id);
 }

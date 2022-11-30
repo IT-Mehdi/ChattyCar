@@ -96,9 +96,12 @@ public class GatewayController {
   }
 
   @GetMapping("/trips")
-  public Iterable<Trip> readTrips(@RequestParam(value = "departure_date",required = false) String departureDate,
-      @RequestParam(required = false) Double originLat, @RequestParam(required = false) Double originLon,
-      @RequestParam(required = false) Double destinationLat, @RequestParam(required = false) Double destinationLon) {
+  public Iterable<Trip> readTrips(
+      @RequestParam(value = "departure_date", required = false) String departureDate,
+      @RequestParam(required = false) Double originLat,
+      @RequestParam(required = false) Double originLon,
+      @RequestParam(required = false) Double destinationLat,
+      @RequestParam(required = false) Double destinationLon) {
 
     if ((originLat != null && originLon == null) || (originLat == null && originLon != null)) {
       throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
@@ -148,8 +151,12 @@ public class GatewayController {
 
     //verifier le nombre de place dans le trip
     //si une place dispo alors on diminue le nombre de place et on crée une inscription
-
+    Trip trip = service.readTripById(tripId);
+    if (trip.getAvailableSeating() <= 0) {
+      throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The ride has no available seating left");
+    }
     service.createInscription(tripId, userId); // on crée une inscription
+    service.decreaseNumberOfAvailableSeat(tripId);
     return new ResponseEntity<>(HttpStatus.CREATED);
   }
 

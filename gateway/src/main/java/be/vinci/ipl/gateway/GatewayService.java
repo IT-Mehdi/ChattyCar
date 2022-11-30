@@ -120,4 +120,8 @@ public class GatewayService {
   public void deleteUserNotifications(int id){
     notificationProxy.deleteUserNotifications(id);
   }
+
+  public void decreaseNumberOfAvailableSeat(int tripId){
+     tripsProxy.decreaseNumberOfAvailableSeat(tripId);
+  }
 }

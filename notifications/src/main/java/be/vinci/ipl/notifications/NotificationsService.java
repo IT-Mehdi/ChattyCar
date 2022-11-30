@@ -22,11 +22,9 @@ public class NotificationsService {
     /**
      * Creates a notification
      * @param notification Notification to create
-     * @return the notification created
      */
-    public Boolean createOne(Notification notification){
+    public void createOne(Notification notification){
         repository.save(notification);
-        return true;
     }
 
     /**

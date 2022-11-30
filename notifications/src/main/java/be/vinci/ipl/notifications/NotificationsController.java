@@ -20,7 +20,7 @@ public class NotificationsController {
         || notification.getNotification_text() == null){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
-        boolean created = service.createOne(notification);
+        service.createOne(notification);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 

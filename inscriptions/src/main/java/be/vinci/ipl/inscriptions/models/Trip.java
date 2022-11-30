@@ -1,5 +1,6 @@
 package be.vinci.ipl.inscriptions.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.AttributeOverrides;
 import jakarta.persistence.Column;
@@ -15,13 +16,16 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 public class Trip {
-
+  @JsonProperty("id")
+  @Column(name = "id")
   private int id;
   @Embedded
   @AttributeOverrides({
       @AttributeOverride(name = "latitude", column = @Column(name = "origin_latitude")),
       @AttributeOverride(name = "longitude", column = @Column(name = "origin_longitude")),
   })
+  @JsonProperty("origin")
+  @Column(name = "origin")
   private Position origin;
 
   @Embedded
@@ -29,10 +33,18 @@ public class Trip {
       @AttributeOverride(name = "latitude", column = @Column(name = "destination_latitude")),
       @AttributeOverride(name = "longitude", column = @Column(name = "destination_longitude")),
   })
+  @JsonProperty("destination")
+  @Column(name = "destination")
   private Position destination;
 
-  private LocalDate departure; //Si on veut utiliser ce param dans une route utilsier notation
+  @JsonProperty("departure")
+  @Column(name = "departure")
+  private LocalDate departure; //Si on veut utiliser ce param dans une route utiliser notation
+  @JsonProperty("driver_id")
+  @Column(name = "driver_id")
   private int driverId;
+  @JsonProperty("available_seating")
+  @Column(name = "available_seating")
   private int availableSeating;
 
 }

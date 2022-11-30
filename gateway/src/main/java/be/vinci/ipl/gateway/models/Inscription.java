@@ -10,8 +10,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Inscription {
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
+
   private Integer id;
 
   @JsonProperty("trip_id")

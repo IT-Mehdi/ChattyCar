@@ -17,8 +17,6 @@ import lombok.ToString;
 @AllArgsConstructor
 public class Trip {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
   @Embedded
   @AttributeOverrides({

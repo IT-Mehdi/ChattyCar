@@ -33,4 +33,7 @@ public interface TripsProxy {
   @DeleteMapping("/trips/driver/{id}")
   void deleteTripsByDriver(@PathVariable int id);
 
+  @PutMapping("/trips/inscriptions/{id}")
+  Trip decreaseNumberOfSeat(@PathVariable int id);
+
 }

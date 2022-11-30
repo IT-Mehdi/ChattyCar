@@ -34,34 +34,73 @@ public class GatewayService {
     this.notificationProxy = notificationProxy;
   }
 
+  /**
+   * Connects the user to the application.
+   * @param credentials the credentials of the user.
+   * @return the user's token
+   */
   public String connect(Credentials credentials) {
     return authenticationProxy.connect(credentials);
   }
 
+  /**
+   *  Verify if the token is valid and send the user's information.
+   * @param token the user's token
+   * @return the user's email
+   */
   public String verify(String token) {
     return authenticationProxy.verify(token);
   }
 
+  /**
+   * Create a new user.
+   * @param user the user's information
+   * @return the user
+   */
   public User createUser(NewUser user) {
     authenticationProxy.createCredentials(user.toCredentials());
     return usersProxy.createUser(user.toNoIdUser());
   }
+
+  /**
+   * Get the user's information by email & send the user's information.
+   * @param email  the user's email
+   * @return the user
+   */
   public User readUserByEmail(String email){
     return usersProxy.readUserByEmail(email);
   }
 
+  /**
+   * Get the user's information by id & send the user's information.
+   * @param id the user's id
+   * @return the user
+   */
   public User readUserById(int id){
     return usersProxy.readUserById(id);
   }
 
+  /**
+   * Update the user's password.
+   * @param credentials the user's information
+   */
   public void updateCredentials(Credentials credentials){
      authenticationProxy.updateCredentials(credentials);
   }
 
+  /**
+   * Update the user's information.
+   * @param user the user's information
+   * @param id the user's id
+   */
   public void updateUser(int id, User user){
     usersProxy.updateUser(id , user);
   }
 
+  /**
+   * Delete the user's account.
+   * @param id the user's id
+   */
   public void deleteUser(@PathVariable int id){
     tripsProxy.deleteTripsByDriver(id);
     User userEmail = readUserById(id);
@@ -69,58 +108,132 @@ public class GatewayService {
     usersProxy.deleteUser(id);
   }
 
+  /**
+   * Get the driver's trips.
+   * @param id the driver's id
+   * @return the driver's trips
+   */
   public Iterable<Trip> readTripsByDriver(int id){
     return tripsProxy.readTripsByDriver(id);
   }
 
+  /**
+   * Get the passenger's trips.
+   * @param id the passenger's id
+   * @return the passenger's trips
+   */
   public PassengerTrips readTripsByPassenger(int id){
     return inscriptionProxy.readAllTripsPassenger(id);
   }
 
+  /**
+   * Create a new trip.
+   * @param newTrip the trip's information
+   * @return the trip
+   */
   public Trip createTrip(NewTrip newTrip){
     return tripsProxy.createTrip(newTrip);
   }
 
+  /**
+   * Get Trips by optional parameters.
+   * @param departureDate the departure date
+   * @param originLat the origin latitude
+   * @param originLon the origin longitude
+   * @param destinationLat the destination latitude
+   * @param destinationLon the destination longitude
+   * @return the trips
+   */
   public Iterable<Trip> readTrips(String departureDate, double originLat, double originLon,
       double destinationLat, double destinationLon){
     return tripsProxy.readTrips( departureDate,  originLat,  originLon, destinationLat, destinationLon);
   }
 
+  /**
+   * Get the trip's information by id & send the trip's information.
+   * @param id the trip's id
+   * @return the trip
+   */
   public Trip readTripById(int id){
     return tripsProxy.readTripById(id);
   }
 
+  /**
+   * Delete the trip.
+   * @param id the trip's id
+   */
   public void deleteTrip(int id){
     tripsProxy.deleteTripById(id);
   }
 
+  /**
+   * Get the passengers of the trip.
+   * @param id the trip's id
+   * @return the passengers in pending, accepted and refused status
+   */
   public Passengers readAllPassengersTrip(int id){
     return inscriptionProxy.readAllPassengersTrip(id);
   }
 
+  /**
+   * Get the passenger status.
+   * @param idTrip the trip's id
+   * @param idPassenger the passenger's id
+   * @return the passenger status
+   */
   public String readPassengerStatus(int idTrip, int idPassenger){
     return inscriptionProxy.readInscription(idTrip, idPassenger);
   }
+
+  /**
+   * Add a passenger in a trip.
+   * @param tripId the trip's id
+   * @param passengerId the passenger's id
+   */
   public void createInscription(int tripId, int passengerId){
     inscriptionProxy.createInscription(tripId, passengerId);
   }
 
+  /**
+   * Update the passenger status.
+   * @param idTrip the trip's id
+   * @param idPassenger the passenger's id
+   * @param status the new status passenger
+   */
   public void updatePassengerStatus(int idTrip, int idPassenger, String status){
     inscriptionProxy.updateInscription(idTrip, idPassenger, status);
   }
 
+  /**
+   * Delete the passenger from the trip.
+   * @param idTrip the trip's id
+   * @param idPassenger the passenger's id
+   */
   public void deletePassenger(int idTrip, int idPassenger){
     inscriptionProxy.deleteInscription(idTrip, idPassenger);
   }
 
+  /**
+   * Get the notifications of the user.
+   * @param id the user's id
+   * @return the notifications
+   */
   public Iterable<Notification> readUserNotifications(int id){
     return notificationProxy.readUserNotifications(id);
   }
 
+  /**
+   * Delete the user notifications.
+   * @param id the user's id
+   */
   public void deleteUserNotifications(int id){
     notificationProxy.deleteUserNotifications(id);
   }
 
+  /**
+   * Decrease the number of seats of the trip.
+   * @param tripId the trip's id
+   */
   public void decreaseNumberOfAvailableSeat(int tripId){
      tripsProxy.decreaseNumberOfAvailableSeat(tripId);
   }

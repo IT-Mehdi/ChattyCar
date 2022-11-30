@@ -38,6 +38,6 @@ public interface InscriptionProxy {
   void deleteInscription(@PathVariable("trip_id") int tripId, @PathVariable("passenger_id") int passengerId);
 
   @PutMapping("/inscriptions/{trip_id}/{passenger_id}")
-  void updateInscription(@PathVariable("trip_id") int tripId, @PathVariable("passenger_id") int passengerId, @RequestParam("status") String status);
+  void updateInscription(@PathVariable("trip_id") int tripId, @PathVariable("passenger_id") int passengerId, @RequestParam(required = true) String status);
 
 }

@@ -1,5 +1,6 @@
 package be.vinci.ipl.chattycar.trips;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -34,6 +35,11 @@ public class Trip {
     private Position destination;
 
     private LocalDate departure; //Si on veut utiliser ce param dans une route utilsier notation
+    @JsonProperty("driver_id")
+    @Column(name =  "driver_id")
     private int driverId;
+
+    @JsonProperty("available_seating")
+    @Column(name = "available_seating")
     private int availableSeating;
 }

@@ -12,3 +12,6 @@ GET http://localhost:9090/trips/driver/3
 
 ### Delete all trips of driver
 DELETE http://localhost:9090/trips/driver/3
+
+### Update number of seats available
+PUT http://localhost:9090/trips/inscription/2

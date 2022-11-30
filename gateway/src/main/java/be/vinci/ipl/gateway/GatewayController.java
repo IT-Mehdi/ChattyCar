@@ -96,9 +96,9 @@ public class GatewayController {
   }
 
   @GetMapping("/trips")
-  public Iterable<Trip> readTrips(@RequestParam String departureDate,
-      @RequestParam Double originLat, @RequestParam Double originLon,
-      @RequestParam Double destinationLat, @RequestParam Double destinationLon) {
+  public Iterable<Trip> readTrips(@RequestParam(value = "departure_date",required = false) String departureDate,
+      @RequestParam(required = false) Double originLat, @RequestParam(required = false) Double originLon,
+      @RequestParam(required = false) Double destinationLat, @RequestParam(required = false) Double destinationLon) {
 
     if ((originLat != null && originLon == null) || (originLat == null && originLon != null)) {
       throw new ResponseStatusException(HttpStatus.BAD_REQUEST,

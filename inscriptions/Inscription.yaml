@@ -84,26 +84,19 @@ paths:
       summary: Create inscription
       responses:
         '201':
-          description: inscription created
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/inscription'
+          description: Inscription created
         '400':
-          description: Bad request
-        '409':
-          description: Conflict
+          description: User is already registered to this trip
     get:
-      summary: Get inscription
+      summary: Get inscription status
       responses:
         404:
           description: No inscription found with this ID
         200:
-          description: Sent inscription
+          description: Sent inscription status
           content:
-            'application/json':
-              schema:
-                $ref: '#/components/schemas/inscription'
+            'text/plain':
+              example: 'accepted'
 
     delete:
       summary: Delete inscription

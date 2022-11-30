@@ -8,13 +8,13 @@ import javax.transaction.Transactional;
 
 @Repository
 public interface NotificationsRepository extends CrudRepository<Notification, Integer>{
-    Iterable<Notification> findByUser(int id);
+    Iterable<Notification> findByUserId(int id);
 
     @Transactional
-    void deleteByUser(int user);
+    void deleteByUserId(int user);
 
-    Iterable<Notification> findByTrip(int id);
+    Iterable<Notification> findByTripId(int id);
 
     @Transactional
-    void deleteByTrip(int trip);
+    void deleteByTripId(int trip);
 }

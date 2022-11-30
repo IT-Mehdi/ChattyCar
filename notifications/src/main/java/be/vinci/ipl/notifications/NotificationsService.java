@@ -36,7 +36,7 @@ public class NotificationsService {
      */
     public Iterable<Notification> readFromUser(int user){
         if (usersProxy.readOne(user) == null) return null;
-        return repository.findByUser(user);
+        return repository.findByUserId(user);
     }
 
     /**
@@ -46,7 +46,7 @@ public class NotificationsService {
      */
     public boolean deleteFromUser(int user) {
         if (usersProxy.readOne(user) == null) return false;
-        repository.deleteByUser(user);
+        repository.deleteByUserId(user);
         return true;
     }
 
@@ -57,7 +57,7 @@ public class NotificationsService {
      */
     public Iterable<Notification> readFromTrip(int trip) {
         if (tripsProxy.readOne(trip) == null) return null;
-        return repository.findByTrip(trip);
+        return repository.findByTripId(trip);
     }
 
     /**
@@ -67,7 +67,7 @@ public class NotificationsService {
      */
     public boolean deleteFromTrip(int trip) {
         if (tripsProxy.readOne(trip) == null) return false;
-        repository.deleteByTrip(trip);
+        repository.deleteByTripId(trip);
         return true;
     }
 }

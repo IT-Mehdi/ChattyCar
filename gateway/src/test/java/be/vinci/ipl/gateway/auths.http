@@ -3,7 +3,29 @@ POST http://localhost:8080/users
 Content-Type: application/json
 
 {
-  "email": "rayan123@gmail.com",
+  "email": "zoe@gmail.com",
+  "firstname": "fzefez",
+  "lastname": "bkzefzfa",
+  "password": "123456"
+}
+
+### Create user
+POST http://localhost:8080/users
+Content-Type: application/json
+
+{
+  "email": "rayan@gmail.com",
+  "firstname": "fzefez",
+  "lastname": "bkzefzfa",
+  "password": "123456"
+}
+
+### Create user
+POST http://localhost:8080/users
+Content-Type: application/json
+
+{
+  "email": "mehdi@gmail.com",
   "firstname": "fzefez",
   "lastname": "bkzefzfa",
   "password": "123456"
@@ -14,8 +36,8 @@ POST http://localhost:8080/auth
 Content-Type: application/json
 
 {
-  "email": "oui@gmail.com",
-  "password": "1234"
+  "email": "rayan@gmail.com",
+  "password": "123456"
 }
 
 > {%
@@ -25,11 +47,11 @@ client.global.set("token", response.body);
 
 ### Get user by email
 
-GET http://localhost:8080/users?email=oui@gmail.com
+GET http://localhost:8081/users?email=rayan123@gmail.com
 
 ### Get user by id
 
-GET http://localhost:8080/users/19
+GET http://localhost:8080/users/2
 
 ### update user password
 
@@ -38,22 +60,22 @@ Content-Type: application/json
 Authorization: {{token}}
 
 {
-  "email": "oui@gmail.com",
+  "email": "rayan123@gmail.com",
   "password": "1234"
 }
 
 ### update user
 
-PUT http://localhost:8080/users/19
+PUT http://localhost:8080/users/1
 Content-Type: application/json
 Authorization: {{token}}
 
 {
-  "id": 19,
-  "email": "oui@gmail.com",
+  "id": 1,
+  "email": "rayan123@gmail.com",
   "firstname": "rayan",
   "lastname": "bke"
 }
 ### Delete one
-DELETE http://localhost:8080/users/19
+DELETE http://localhost:8080/users/1
 Authorization: {{token}}

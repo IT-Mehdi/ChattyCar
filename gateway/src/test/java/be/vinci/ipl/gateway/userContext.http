@@ -1,0 +1,32 @@
+### Create user
+POST http://localhost:9002/users
+Content-Type: application/json
+
+{
+  "email": "1@Car",
+  "firstname": "1",
+  "lastname": "1"
+}
+
+### Create user 2
+POST http://localhost:9002/users
+Content-Type: application/json
+
+{
+  "email": "2@Car",
+  "firstname": "2",
+  "lastname": "2"
+}
+
+### Create user 3
+POST http://localhost:9002/users
+Content-Type: application/json
+
+{
+  "email": "3@Car",
+  "firstname": "2",
+  "lastname": "2"
+}
+
+### Get user by id
+GET http://localhost:9002/users/3

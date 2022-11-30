@@ -2,10 +2,12 @@ package be.vinci.ipl.gateway;
 
 import be.vinci.ipl.gateway.data.AuthenticationProxy;
 import be.vinci.ipl.gateway.data.InscriptionProxy;
+import be.vinci.ipl.gateway.data.NotificationProxy;
 import be.vinci.ipl.gateway.data.TripsProxy;
 import be.vinci.ipl.gateway.data.UsersProxy;
 import be.vinci.ipl.gateway.models.Credentials;
 import be.vinci.ipl.gateway.models.NewTrip;
+import be.vinci.ipl.gateway.models.Notification;
 import be.vinci.ipl.gateway.models.PassengerTrips;
 import be.vinci.ipl.gateway.models.Passengers;
 import be.vinci.ipl.gateway.models.Trip;
@@ -21,13 +23,15 @@ public class GatewayService {
   private final UsersProxy usersProxy;
   private final TripsProxy tripsProxy;
   private final InscriptionProxy inscriptionProxy;
+  private final NotificationProxy notificationProxy;
 
   public GatewayService(AuthenticationProxy authenticationProxy, UsersProxy usersProxy,
-      TripsProxy tripsProxy, InscriptionProxy inscriptionProxy) {
+      TripsProxy tripsProxy, InscriptionProxy inscriptionProxy, NotificationProxy notificationProxy) {
     this.authenticationProxy = authenticationProxy;
     this.usersProxy = usersProxy;
     this.tripsProxy = tripsProxy;
     this.inscriptionProxy = inscriptionProxy;
+    this.notificationProxy = notificationProxy;
   }
 
   public String connect(Credentials credentials) {
@@ -107,5 +111,9 @@ public class GatewayService {
 
   public void deletePassenger(int idTrip, int idPassenger){
     inscriptionProxy.deleteInscription(idTrip, idPassenger);
+  }
+
+  public Iterable<Notification> readUserNotifications(int id){
+    return notificationProxy.readUserNotifications(id);
   }
 }

@@ -186,6 +186,13 @@ public class GatewayController {
     throw new ResponseStatusException(HttpStatus.OK, "Passenger deleted");
   }
 
+  @GetMapping("/users/{id}/notifications")
+  public Iterable<Notification> readUserNotifications(@PathVariable int id,
+      @RequestHeader("Authorization") String token) {
+    checkUserTokenById(id, token);
+    return service.readUserNotifications(id);
+  }
+
   private void checkUserTokenById(int id, String token) {
     String userEmail = service.verify(token);
     User user = service.readUserById(id);

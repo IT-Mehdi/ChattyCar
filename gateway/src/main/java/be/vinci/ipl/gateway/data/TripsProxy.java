@@ -17,9 +17,9 @@ public interface TripsProxy {
   Trip createTrip(@RequestBody NewTrip trip);
 
   @GetMapping("/trips")
-  List<Trip> readTrips(@RequestParam String departureDate, @RequestParam double originLat,
-      @RequestParam double originLon,
-      @RequestParam double destinationLat, @RequestParam double destinationLon);
+  List<Trip> readTrips(@RequestParam String departureDate, @RequestParam Double originLat,
+      @RequestParam Double originLon,
+      @RequestParam Double destinationLat, @RequestParam Double destinationLon);
 
   @GetMapping("/trips/{id}")
   Trip readTripById(@PathVariable int id);

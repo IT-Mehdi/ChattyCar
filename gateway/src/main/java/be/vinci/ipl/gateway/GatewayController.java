@@ -56,10 +56,11 @@ public class GatewayController {
     if (user.getEmail() == null || user.getFirstname() == null || user.getLastname() == null) {
       throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User in request are not correct");
     }
-    if (!user.getId().equals(id)) {
+    User user2 = checkUserTokenByEmail(user.getEmail(), token);
+    if (!user.getId().equals(id) || !user2.getId().equals(id) || !user2.getId().equals(user.getId())) {
       throw new ResponseStatusException(HttpStatus.FORBIDDEN);
     }
-    checkUserTokenByEmail(user.getEmail(), token);
+
     service.updateUser(id, user);
   }
 
@@ -112,7 +113,7 @@ public class GatewayController {
       throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
           "Both latitude and longitude should be specified for a position query");
     }
-    System.out.println(originLat + " : "+ originLon + " : " + destinationLat + " : " + destinationLon);
+
     return service.readTrips(departureDate, originLat, originLon, destinationLat, destinationLon);
   }
 
@@ -155,7 +156,6 @@ public class GatewayController {
       throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The ride has no available seating left");
     }
     service.createInscription(tripId, userId); // on crée une inscription
-    service.decreaseNumberOfAvailableSeat(tripId);
     return new ResponseEntity<>(HttpStatus.CREATED);
   }
 
@@ -252,31 +252,35 @@ public class GatewayController {
     service.deleteUserNotifications(id);
   }
 
-  private void checkUserTokenById(int id, String token) {
+  private User checkUserTokenById(int id, String token) {
     String userEmail = service.verify(token);
     User user = service.readUserById(id);
     if (!userEmail.equals(user.getEmail())) {
       throw new ResponseStatusException(HttpStatus.FORBIDDEN);
     }
+    return user;
   }
 
-  private void checkUserTokenByEmail(String email, String token) {
+  private User checkUserTokenByEmail(String email, String token) {
     String userEmail = service.verify(token);
+    User user = service.readUserByEmail(email);
     if (!userEmail.equals(email)) {
       throw new ResponseStatusException(HttpStatus.FORBIDDEN);
     }
+    return user;
   }
 
-  private void checkDriverToken(int tripId, String token) {
+  private User checkDriverToken(int tripId, String token) {
     String userEmail = service.verify(token);
     User driver = service.readUserByEmail(userEmail);
     Trip trip = service.readTripById(tripId);
     if (driver.getId() != trip.getDriverId()) {
       throw new ResponseStatusException(HttpStatus.FORBIDDEN);
     }
+    return driver;
   }
 
-  private void checkDriverOrPassengerToken(int tripId, int userId, String token) {
+  private User checkDriverOrPassengerToken(int tripId, int userId, String token) {
     String userEmail = service.verify(token);
     User driver = service.readUserByEmail(userEmail);
     User passenger = service.readUserById(userId);
@@ -285,5 +289,6 @@ public class GatewayController {
       throw new ResponseStatusException(
           HttpStatus.FORBIDDEN);
     }
+    return driver;
   }
 }

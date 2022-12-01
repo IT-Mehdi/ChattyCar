@@ -16,6 +16,7 @@ import be.vinci.ipl.gateway.models.NewUser;
 import java.time.LocalDate;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.client.HttpClientErrorException.NotFound;
 
 @Service
 public class GatewayService {
@@ -186,7 +187,11 @@ public class GatewayService {
    * @param tripId the trip's id
    */
   public void deleteTrip(int tripId) {
-    inscriptionProxy.deleteAllPassengersTrip(tripId);
+    try {
+      inscriptionProxy.deleteAllPassengersTrip(tripId);
+    }catch (Exception ignored){
+
+    }
     tripsProxy.deleteTripById(tripId);
   }
 
@@ -223,6 +228,7 @@ public class GatewayService {
         new Notification(trip.getDriverId(), tripId, LocalDate.now().toString(),
             "Un passager s'est inscrit à votre voyage "));
     inscriptionProxy.createInscription(tripId, passengerId);
+    decreaseNumberOfAvailableSeat(tripId);
   }
 
   /**

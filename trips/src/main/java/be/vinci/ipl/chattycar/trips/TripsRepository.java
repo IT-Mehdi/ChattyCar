@@ -16,5 +16,5 @@ public interface TripsRepository extends CrudRepository<Trip, Integer> {
     @Transactional
     boolean deleteByDriverId(int driverId);
 
-
+    boolean existsByDriverId(int integer);
 }

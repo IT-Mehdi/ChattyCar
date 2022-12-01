@@ -5,6 +5,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Comparator;
+
 @RestController
 public class TripsController {
 
@@ -15,24 +19,50 @@ public class TripsController {
     }
 
     @PostMapping("/trips")
-    public ResponseEntity<Trip> createOne(@RequestBody Trip trip) {
-        if (trip.getDestination() == null || trip.getOrigin() == null
-                || trip.getDeparture() == null || trip.getDriverId() < 0) {
+    public ResponseEntity<NewTrip> createOne(@RequestBody NewTrip newTrip) {
+        if (newTrip.getDestination() == null || newTrip.getOrigin() == null
+                || newTrip.getDeparture() == null || newTrip.getDriverId() < 0) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
-        service.createOne(trip);
-        return new ResponseEntity<>(trip, HttpStatus.CREATED);
+        service.createOne(newTrip);
+        return new ResponseEntity<>(newTrip, HttpStatus.CREATED);
     }
 
     @GetMapping("/trips")
-    public Iterable<Trip> readAll() {
+    public Iterable<Trip> readAll(@RequestParam(value = "departure_date", required = false) LocalDate departureDate,
+                                  @RequestParam(required = false) Double originLat,
+                                  @RequestParam(required = false) Double originLon,
+                                  @RequestParam(required = false) Double destinationLat,
+                                  @RequestParam(required = false) Double destinationLon) {
         Iterable<Trip> response = service.readAll();
-        for(Trip trip : response) {
-            if(trip.getOrigin().getLatitude() < 0 || trip.getOrigin().getLongitude() < 0
-                    || trip.getDestination().getLatitude() < 0 || trip.getDestination().getLongitude() < 0)
-                throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        ArrayList<Trip> trips = new ArrayList<>();
+
+        for(Trip t : response) {
+            if(t.getAvailableSeating() > 0) {
+                if(departureDate != null && departureDate.isEqual(t.getDeparture())) {
+                    trips.add(t);
+                }
+                else {
+                    trips.add(t);
+                }
+            }
         }
-        return response;
+
+        if(departureDate != null) {
+            return trips.stream().limit(20).toList();
+        }
+        else if(originLat != null && originLon != null && destinationLat != null && destinationLon != null) {
+            return trips;
+        }
+        else if(originLat != null && originLon != null) {
+            return trips;
+        }
+        else if(destinationLat != null && destinationLon != null) {
+            return trips;
+        }
+        else {
+            return trips.stream().sorted(Comparator.comparingInt(Trip::getId).reversed()).limit(20).toList();
+        }
     }
 
     @GetMapping("/trips/{id}")

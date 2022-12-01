@@ -14,11 +14,11 @@ public class TripsService {
     }
 
     /**
-     * Creates a trip in repository
-     * @param trip the trip to create
+     * Creates a newTrip in repository
+     * @param newTrip the newTrip to create
      */
-    public void createOne(Trip trip) {
-        repository.save(trip);
+    public void createOne(NewTrip newTrip) {
+        repository.save(newTrip.toTrip());
     }
 
     /**
@@ -70,7 +70,7 @@ public class TripsService {
     }
 
     public boolean driverExist(int driverId) {
-        return repository.existsById(driverId);
+        return repository.existsByDriverId(driverId);
     }
 
     public void updateAvailableSeating(Trip tripUpdated) {

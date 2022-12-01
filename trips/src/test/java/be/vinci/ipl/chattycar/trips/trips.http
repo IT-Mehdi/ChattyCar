@@ -1,5 +1,5 @@
 ### Read one
-GET http://localhost:9090/trips/2
+GET http://localhost:9090/trips/1
 
 ### Read all
 GET http://localhost:9090/trips
@@ -11,7 +11,23 @@ DELETE http://localhost:9090/trips/1
 GET http://localhost:9090/trips/driver/3
 
 ### Delete all trips of driver
-DELETE http://localhost:9090/trips/driver/3
+DELETE http://localhost:9090/trips/driver/2
 
 ### Update number of seats available
-PUT http://localhost:9090/trips/inscription/2
+PUT http://localhost:9090/trips/inscription/3
+
+### Calculate Distance
+###Calculate Distance
+POST http://localhost:9090/trips/position
+Content-Type: application/json
+
+{
+  "origin":{
+    "latitude": 34.32,
+    "longitude": 24.09
+  },
+  "destination":{
+    "latitude": 41.14,
+    "longitude": 67.42
+  }
+}

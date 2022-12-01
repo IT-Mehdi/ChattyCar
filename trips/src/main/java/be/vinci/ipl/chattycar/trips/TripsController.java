@@ -7,6 +7,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 @RestController
 public class TripsController {
@@ -41,21 +42,27 @@ public class TripsController {
                 if(departureDate != null && departureDate.isEqual(t.getDeparture())) {
                     trips.add(t);
                 }
-                else if(originLat != null && originLon != null && destinationLat != null && destinationLon != null) {
-                    trips.add(t);
-                }
-                else if(originLat != null && originLon != null) {
-                    trips.add(t);
-                }
-                else if(destinationLat != null && destinationLon != null) {
-                    trips.add(t);
-                }
                 else {
                     trips.add(t);
                 }
             }
         }
-        return trips;
+
+        if(departureDate != null) {
+            return trips.stream().limit(20).toList();
+        }
+        else if(originLat != null && originLon != null && destinationLat != null && destinationLon != null) {
+            return trips;
+        }
+        else if(originLat != null && originLon != null) {
+            return trips;
+        }
+        else if(destinationLat != null && destinationLon != null) {
+            return trips;
+        }
+        else {
+            return trips.stream().sorted(Comparator.comparingInt(Trip::getId).reversed()).limit(20).toList();
+        }
     }
 
     @GetMapping("/trips/{id}")

@@ -1,0 +1,82 @@
+### Create user
+POST http://localhost:8080/users
+Content-Type: application/json
+
+{
+  "email": "zoe@gmail.com",
+  "firstname": "fzefez",
+  "lastname": "bkzefzfa",
+  "password": "123456"
+}
+
+### Create user
+POST http://localhost:8080/users
+Content-Type: application/json
+
+{
+  "email": "rayan@gmail.com",
+  "firstname": "fzefez",
+  "lastname": "bkzefzfa",
+  "password": "123456"
+}
+
+### Create user
+POST http://localhost:8080/users
+Content-Type: application/json
+
+{
+  "email": "mehdi@gmail.com",
+  "firstname": "fzefez",
+  "lastname": "bkzefzfa",
+  "password": "123456"
+}
+
+### Connect user
+POST http://localhost:8080/auth
+Content-Type: application/json
+
+{
+  "email": "rayan@gmail.com",
+  "password": "123456"
+}
+
+> {%
+client.global.set("token", response.body);
+%}
+
+
+### Get user by email
+
+GET http://localhost:8080/users?email=rayan@gmail.com
+
+### Get user by id
+
+GET http://localhost:8080/users/3
+Authorization: {{token}}
+
+### update user password
+
+PUT http://localhost:8080/users
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "email": "rayan123@gmail.com",
+  "password": "1234"
+}
+
+### update user
+
+PUT http://localhost:8080/users/3
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "id": 3,
+  "email": "rayan@gmail.com",
+  "firstname": "rxayan",
+  "lastname": "bke"
+}
+### Delete one
+DELETE http://localhost:8080/users/1
+Authorization: {{token}}

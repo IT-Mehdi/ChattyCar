@@ -1,0 +1,88 @@
+### Connect user
+POST http://localhost:8080/auth
+Content-Type: application/json
+
+{
+  "email": "mehdi@gmail.com",
+  "password": "123456"
+}
+
+> {%
+client.global.set("token", response.body);
+%}
+
+### Create 1
+POST http://localhost:8080/trips
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "origin":{
+    "latitude": 34.32,
+    "longitude": 90.52
+  },
+  "destination":{
+    "latitude": 41.14,
+    "longitude": 67.42
+  },
+  "departure": "2017-01-13",
+  "driver_id": 2,
+  "available_seating": 4
+}
+
+### Create 2
+POST http://localhost:8080/trips
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "origin":{
+    "latitude": 22.34,
+    "longitude": 14.22
+  },
+  "destination":{
+    "latitude": 54.54,
+    "longitude": 78.32
+  },
+  "departure": "2014-10-21",
+  "driver_id": 2,
+  "available_seating": 3
+}
+
+### Create 3
+POST http://localhost:8080/trips
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "origin":{
+    "latitude": 68.97,
+    "longitude": 467.93
+  },
+  "destination":{
+    "latitude": 38.98,
+    "longitude": 463.98
+  },
+  "departure": "2015-10-21",
+  "driver_id": 2,
+  "available_seating": 3
+}
+
+### Create 3
+POST http://localhost:8080/trips
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "origin":{
+    "latitude": 68.97,
+    "longitude": 467.93
+  },
+  "destination":{
+    "latitude": 38.98,
+    "longitude": 463.98
+  },
+  "departure": "2015-10-21",
+  "driver_id": 2,
+  "available_seating": 3
+}

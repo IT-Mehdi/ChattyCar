@@ -16,16 +16,16 @@ paths:
         content:
           'application/json':
             schema:
-              $ref: '#/components/schemas/trip'
+              $ref: '#/components/schemas/newTrip'
       responses:
-        200:
-          description: Trip created, returned the trip
+        201:
+          description: Trip is created, sent trip created with its assigned ID
           content:
             'application/json':
               schema:
-                $ref: '#/components/schemas/info_trip'
+                $ref: '#/components/schemas/trip'
         400:
-          description: Error
+          description: Trip in request is not correct
 
     get:
       summary: Get list of trips with optional search queries
@@ -105,13 +105,24 @@ paths:
                 $ref: '#/components/schemas/trip'
     delete:
       summary: Delete trip
+      security:
+        - authentication:
+            - driver
       responses:
         404:
           description: No trip found with this ID
-        201:
+        200:
           description: Trip is deleted
 
   /trips/driver/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          example: 38
+        description: ID of the driver
     get:
       summary: Get trips where user is the driver with a future departure date
       parameters:
@@ -124,7 +135,7 @@ paths:
           description: ID of the user
       responses:
         404:
-          description: No user found with this ID
+          description: No driver found with this ID
         200:
           description: Sent user driver trips
           content:
@@ -134,34 +145,34 @@ paths:
                 items:
                   $ref: "#/components/schemas/trip"
 
-  /trips/passenger/{id}:
-    get:
-      summary: Get trips where user is a passenger with a future departure date by status
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
-            example: 1
-          description: ID of the user
-      responses:
-        404:
-          description: No user found with this ID
-        200:
-          description: Sent user passenger trips
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/passenger_trips"
-
     delete:
       summary: Delete all trip where user is the driver
       responses:
         404:
-          description: No trip found with this ID
-        201:
+          description: No driver found with this ID
+        200:
           description: All trips are deleted
+
+  /trips/inscription/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          example: 38
+        description: ID of the trip
+    put:
+      summary: Decreases the number of available seats
+      responses:
+        400:
+          description: No trip found with this ID
+        200:
+          description: Return the trip with number of seats updated
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/trip'
 
 components:
 
@@ -187,7 +198,7 @@ components:
           $ref: '#/components/schemas/position'
         departure_date:
           type: string
-          description: Date in ISO 8601, YYYY-MM-DD
+          description: Date in ISO 8601, YYYY-MM-DD hh:mm:ss
         driver_id:
           type: integer
         available_seating:
@@ -199,7 +210,7 @@ components:
         destination:
           latitude: 50.849372
           longitude: 4.451009
-        departure: 2022-10-24
+        departure: 2022-10-24 10:45:00
         driver_id: 12
         available_seating: 2
 

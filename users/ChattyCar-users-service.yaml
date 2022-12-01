@@ -47,28 +47,6 @@ paths:
             'application/json':
               schema:
                 $ref: '#/components/schemas/user'
-    put:
-      summary: Update user password
-      security:
-        - authentication:
-            - specific_user
-      requestBody:
-        description: New credentials of the user
-        content:
-          'application/json':
-            schema:
-              $ref: '#/components/schemas/credentials'
-      responses:
-        400:
-          description: Credentials in request are not correct
-        401:
-          description: Missing authentication
-        403:
-          description: Not identified as the corresponding user
-        404:
-          description: No user found with this email
-        200:
-          description: Password is updated
 
   /users/{id}:
     parameters:
@@ -81,12 +59,7 @@ paths:
         description: ID of the user
     get:
       summary: Get user information
-      security:
-        - authentication:
-            - any_user
       responses:
-        401:
-          description: Missing authentication
         404:
           description: No user found with this ID
         200:
@@ -97,9 +70,6 @@ paths:
                 $ref: '#/components/schemas/user'
     put:
       summary: Update user information
-      security:
-        - authentication:
-            - specific_user
       requestBody:
         description: New information of the user
         content:
@@ -109,64 +79,19 @@ paths:
       responses:
         400:
           description: User in request is not correct
-        401:
-          description: Missing authentication
-        403:
-          description: Not identified as the corresponsing user
         404:
           description: No user found with this ID
         200:
           description: User information is updated
     delete:
       summary: Delete user
-      security:
-        - authentication:
-            - specific_user
       responses:
-        401:
-          description: Missing authentication
-        403:
-          description: Not identified as the corresponding user
         404:
           description: No user found with this ID
         200:
           description: User is deleted
 
-  /trips/{id}/passengers:
-    get:
-      summary: Get list of passengers of a trip, with pending, accepted and refused status
-      security:
-        - authentication:
-            - driver
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
-            example: 38
-          description: ID of the trip
-      responses:
-        400:
-          description: Status not in accepted values
-        401:
-          description: Missing authentication
-        403:
-          description: Not identified as the corresponding user
-        404:
-          description: No trip found with this ID
-        200:
-          description: Sent list of passengers
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/passengers'
 components:
-  securitySchemes:
-    authentication:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
 
   schemas:
 
@@ -178,8 +103,6 @@ components:
         firstname:
           type: string
         lastname:
-          type: string
-        password:
           type: string
       example:
         email: gregory.seront@vinci.be
@@ -203,14 +126,3 @@ components:
         email: gregory.seront@vinci.be
         firstname: Gregory
         lastname: Seront
-
-    credentials:
-      type: object
-      properties:
-        email:
-          type: string
-        password:
-          type: string
-      example:
-        email: gregory.seront@vinci.be
-        password: password123

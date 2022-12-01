@@ -1,0 +1,55 @@
+### Connect user
+POST http://localhost:8080/auth
+Content-Type: application/json
+
+{
+  "email": "mehdi@gmail.com",
+  "password": "123456"
+}
+
+> {%
+client.global.set("token", response.body);
+%}
+
+### Connect user
+POST http://localhost:8080/auth
+Content-Type: application/json
+
+{
+  "email": "rayan@gmail.com",
+  "password": "123456"
+}
+
+> {%
+client.global.set("token", response.body);
+%}
+
+
+### Create one inscription {trip_id}/{passenger_id} 1
+POST http://localhost:8080/trips/3/passengers/3
+Authorization: {{token}}
+
+### Get status of inscription
+GET http://localhost:8080/trips/1/passengers/1
+Authorization: {{token}}
+
+### Update inscription status
+PUT http://localhost:8080/trips/1/passengers/1?status=accepted
+Authorization: {{token}}
+
+### Update inscription status
+PUT http://localhost:8080/trips/1/passengers/1?status=refused
+Authorization: {{token}}
+
+### Get all inscriptions of a trip
+GET http://localhost:8080/trips/1/passengers
+Authorization: {{token}}
+
+### Get all trips of a passenger
+GET http://localhost:8080/users/3/passengers
+Authorization: {{token}}
+
+### Delete inscription
+DELETE http://localhost:8080/trips/1/passengers/1
+Authorization: {{token}}
+

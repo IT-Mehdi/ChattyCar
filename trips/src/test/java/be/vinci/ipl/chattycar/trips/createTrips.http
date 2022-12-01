@@ -41,11 +41,11 @@ Content-Type: application/json
 {
   "origin":{
     "latitude": 68.97,
-    "longitude": 467.93
+    "longitude": 47.93
   },
   "destination":{
     "latitude": 38.98,
-    "longitude": 463.98
+    "longitude": 43.98
   },
   "departure": "2015-10-21",
   "driver_id": 2,

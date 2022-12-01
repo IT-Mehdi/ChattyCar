@@ -1,18 +1,17 @@
-package be.vinci.ipl.positions;
+package be.vinci.ipl.chattycar.trips.models;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
-import javax.persistence.*;
-import java.time.LocalDate;
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
+import javax.persistence.Column;
+import javax.persistence.Embedded;
 
 @Getter
 @Setter
 @ToString
-@NoArgsConstructor
-public class Trip {
+@AllArgsConstructor
+public class PositionTrip {
 
     @Embedded
     @AttributeOverrides({

@@ -7,14 +7,40 @@ servers:
   - url: 'https'
 paths:
   /trips/position:
-    post:
+    get:
       summary: "Retrieve the distance between the departure and destination"
-      requestBody:
-        description: Position of the trip
-        content:
-          'application/json':
-            schema:
-              $ref: '#/components/schemas/positionTrip'
+      tags:
+        - positions
+      parameters:
+        - name: originLatitude
+          in: query
+          description: "origin latitude of the trip"
+          schema:
+            type: number
+            example: 56.3
+            required: true
+        - name: originLongitude
+          in: query
+          description: "origin longitude of the trip"
+          schema:
+            type: number
+            example: 58.4
+            required: true
+        - name: destLatitude
+          in: query
+          description: "destination latitude of the trip"
+          schema:
+            type: number
+            example: 45.1
+            required: true
+        - name: destLongitude
+          in: query
+          description: "destination longitude of the trip"
+          schema:
+            type: number
+            example: 75.3
+            required: true
+
       responses:
         400:
           description: Information in request is not correct
@@ -29,35 +55,6 @@ components:
   schemas:
 
     distance:
-      type: number
-      properties:
-        distance:
-          type: number
+      type: string
       example:
-        distance: 89.3
-
-    position:
-      type: object
-      properties:
-        latitude:
-          type: number
-        longitude:
-          type: number
-      example:
-        latitude: 50.849372
-        longitude: 4.451009
-
-    positionTrip:
-      type: object
-      properties:
-        origin:
-          $ref: '#/components/schemas/position'
-        destination:
-          $ref: '#/components/schemas/position'
-      example:
-        origin:
-          latitude: 50.849372
-          longitude: 4.451009
-        destination:
-          latitude: 50.849372
-          longitude: 4.451009
+        89.3

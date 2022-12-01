@@ -150,8 +150,8 @@ public class GatewayService {
    * @param destinationLon the destination longitude
    * @return the trips
    */
-  public Iterable<Trip> readTrips(String departureDate, double originLat, double originLon,
-      double destinationLat, double destinationLon){
+  public Iterable<Trip> readTrips(String departureDate, Double originLat, Double originLon,
+      Double destinationLat, Double destinationLon){
     return tripsProxy.readTrips( departureDate,  originLat,  originLon, destinationLat, destinationLon);
   }
 

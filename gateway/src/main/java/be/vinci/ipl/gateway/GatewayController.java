@@ -112,7 +112,7 @@ public class GatewayController {
       throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
           "Both latitude and longitude should be specified for a position query");
     }
-
+    System.out.println(originLat + " : "+ originLon + " : " + destinationLat + " : " + destinationLon);
     return service.readTrips(departureDate, originLat, originLon, destinationLat, destinationLon);
   }
 

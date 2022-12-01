@@ -166,10 +166,11 @@ public class GatewayService {
 
   /**
    * Delete the trip.
-   * @param id the trip's id
+   * @param tripId the trip's id
    */
-  public void deleteTrip(int id){
-    tripsProxy.deleteTripById(id);
+  public void deleteTrip(int tripId){
+    inscriptionProxy.deleteAllPassengersTrip(tripId);
+    tripsProxy.deleteTripById(tripId);
   }
 
   /**

@@ -2,7 +2,13 @@ package be.vinci.ipl.gateway.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.persistence.Column;
+import lombok.*;
 
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class Notification {
 
   @JsonProperty("user_id")

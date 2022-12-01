@@ -122,11 +122,10 @@ public class GatewayController {
   }
 
   @DeleteMapping("/trips/{id}")
-  public ResponseEntity<Void> deleteTrip(@PathVariable Integer id,
+  public void deleteTrip(@PathVariable Integer id,
       @RequestHeader("Authorization") String token) {
     checkDriverToken(id, token);
     service.deleteTrip(id);
-    return new ResponseEntity<>(HttpStatus.CREATED);
   }
 
   @GetMapping("/trips/{id}/passengers")

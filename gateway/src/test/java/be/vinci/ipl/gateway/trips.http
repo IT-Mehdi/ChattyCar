@@ -3,7 +3,7 @@ POST http://localhost:8080/auth
 Content-Type: application/json
 
 {
-  "email": "zoe@gmail.com",
+  "email": "mehdi@gmail.com",
   "password": "123456"
 }
 
@@ -32,13 +32,13 @@ Authorization: {{token}}
 
 
 ### Read one
-GET http://localhost:8080/trips/2
+GET http://localhost:8080/trips/1
 
 ### Read all
 GET http://localhost:8080/trips
 
 ### Delete one
-DELETE http://localhost:8080/trips/1
+DELETE http://localhost:8080/trips/2
 Authorization: {{token}}
 
 ### Read all of driver

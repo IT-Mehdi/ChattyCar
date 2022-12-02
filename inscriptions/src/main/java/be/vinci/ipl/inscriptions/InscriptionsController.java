@@ -75,8 +75,8 @@ public class InscriptionsController {
    * @param tripId the id of the trip
    * @return the inscription created
    */
-  @PostMapping("/inscriptions/{tripId}/{passenger_id}")
-  public ResponseEntity<Void> createOne(@PathVariable("passenger_id") Integer passengerId,@PathVariable("tripId") Integer tripId) {
+  @PostMapping("/inscriptions/{trip_id}/{passenger_id}")
+  public ResponseEntity<Void> createOne(@PathVariable("passenger_id") Integer passengerId,@PathVariable("trip_id") Integer tripId) {
     Inscription inscription = service.createInscription(tripId, passengerId);
     if (inscription == null) throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"User is already registered for this trip");
     return new ResponseEntity<>(HttpStatus.CREATED);
@@ -88,8 +88,8 @@ public class InscriptionsController {
    * @param tripId the id of the trip
    * @return the inscription
    */
-  @GetMapping("/inscriptions/{tripId}/{passenger_id}")
-  public ResponseEntity<String> getInscriptionStatus(@PathVariable("passenger_id") Integer passengerId,@PathVariable("tripId") Integer tripId){
+  @GetMapping("/inscriptions/{trip_id}/{passenger_id}")
+  public ResponseEntity<String> getInscriptionStatus(@PathVariable("passenger_id") Integer passengerId,@PathVariable("trip_id") Integer tripId){
     if (passengerId == null || tripId == null) {
       throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
     }
@@ -103,8 +103,8 @@ public class InscriptionsController {
    * @param passengerId the id of the user
    * @param tripId the id of the trip
    */
-  @DeleteMapping("/inscriptions/{tripId}/{passenger_id}")
-  public ResponseEntity<Void> deleteOne(@PathVariable("passenger_id") Integer passengerId,@PathVariable("tripId") Integer tripId){
+  @DeleteMapping("/inscriptions/{trip_id}/{passenger_id}")
+  public ResponseEntity<Void> deleteOne(@PathVariable("passenger_id") Integer passengerId,@PathVariable("trip_id") Integer tripId){
     if (passengerId == null || tripId == null) {
       throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
     }
@@ -120,8 +120,8 @@ public class InscriptionsController {
    * @param tripId the id of the trip
    * @param status the new status
    */
-  @PutMapping("/inscriptions/{tripId}/{passenger_id}")
-  public ResponseEntity<Void> editStatus(@PathVariable("passenger_id") Integer passengerId,@PathVariable("tripId") Integer tripId, @RequestParam(required = true) String status){
+  @PutMapping("/inscriptions/{trip_id}/{passenger_id}")
+  public ResponseEntity<Void> editStatus(@PathVariable("passenger_id") Integer passengerId,@PathVariable("trip_id") Integer tripId, @RequestParam(required = true) String status){
     if (!status.equals("accepted") && !status.equals("refused")) {
       throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
     }

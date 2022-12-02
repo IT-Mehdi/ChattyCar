@@ -40,3 +40,6 @@ GET http://localhost:9090/trips?originLat=23.45&originLon=76.43
 
 ### Read all with destination position
 GET http://localhost:9090/trips?destinationLat=23.45&destinationLon=76.43
+
+### Read all with origin and destination position
+GET http://localhost:9090/trips?originLat=23.45&originLon=76.43&destinationLat=23.45&destinationLon=76.43

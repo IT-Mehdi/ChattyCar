@@ -51,3 +51,39 @@ Content-Type: application/json
   "driver_id": 2,
   "available_seating": 3
 }
+
+### Create 4
+POST http://localhost:9090/trips
+Content-Type: application/json
+
+{
+  "origin":{
+    "latitude": 28.35,
+    "longitude": 17.43
+  },
+  "destination":{
+    "latitude": 32.93,
+    "longitude": 53.18
+  },
+  "departure": "2015-10-21",
+  "driver_id": 1,
+  "available_seating": 4
+}
+
+### Create 5
+POST http://localhost:9090/trips
+Content-Type: application/json
+
+{
+  "origin":{
+    "latitude": 87.97,
+    "longitude": 12.93
+  },
+  "destination":{
+    "latitude": 34.98,
+    "longitude": 21.98
+  },
+  "departure": "2016-10-21",
+  "driver_id": 4,
+  "available_seating": 2
+}

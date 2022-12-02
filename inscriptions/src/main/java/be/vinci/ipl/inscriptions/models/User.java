@@ -19,11 +19,11 @@ public class User {
   @JsonProperty("email")
   @Column(name = "email")
   private String email;
-  @JsonProperty("first_name")
-  @Column(name = "first_name")
+  @JsonProperty("firstname")
+  @Column(name = "firstname")
   private String firstname;
-  @JsonProperty("last_name")
-  @Column(name = "last_name")
+  @JsonProperty("lastname")
+  @Column(name = "lastname")
   private String lastname;
 
 }

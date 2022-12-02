@@ -52,7 +52,7 @@ public class InscriptionsController {
   @GetMapping("/inscriptions/passengers/{passenger_id}")
   public ResponseEntity<PassengerTrips> getAllInscriptions(@PathVariable("passenger_id") Integer passenger_id){
     //:TODO
-    PassengerTrips passengerTrips = service.getAllInscriptionsOfAPassenger(passenger_id);
+    PassengerTrips passengerTrips = service.getAllTripsOfAPassenger(passenger_id);
     if(passengerTrips == null){
       throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No inscriptions found for this passenger");
     }

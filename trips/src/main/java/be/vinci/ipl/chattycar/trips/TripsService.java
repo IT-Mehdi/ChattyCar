@@ -3,7 +3,6 @@ package be.vinci.ipl.chattycar.trips;
 import be.vinci.ipl.chattycar.trips.data.PositionsProxy;
 import be.vinci.ipl.chattycar.trips.data.TripsRepository;
 import be.vinci.ipl.chattycar.trips.models.NewTrip;
-import be.vinci.ipl.chattycar.trips.models.PositionTrip;
 import be.vinci.ipl.chattycar.trips.models.Trip;
 import org.springframework.stereotype.Service;
 
@@ -75,16 +74,33 @@ public class TripsService {
         return true;
     }
 
+    /**
+     * Verify if the driver exist
+     * @param driverId the id of the driver
+     * @return true if the driver exist, false otherwise
+     */
     public boolean driverExist(int driverId) {
         return repository.existsByDriverId(driverId);
     }
 
+    /**
+     * Save the trip updated
+     * @param tripUpdated the trip updated to save
+     */
     public void updateAvailableSeating(Trip tripUpdated) {
         repository.save(tripUpdated);
     }
 
-    public double calculateDistance(Trip t) {
-        return positionsProxy.calculateDistance(t.getOrigin().getLatitude(), t.getOrigin().getLongitude(), t.getDestination().getLatitude(), t.getDestination().getLongitude());
+    /**
+     * Calcul the distance between two position, use the position service
+     * @param lat1 latitude 1
+     * @param lon1 longitude 1
+     * @param lat2 latitude 2
+     * @param lon2 longitude 2
+     * @return the distance in kilometer
+     */
+    public double calculateDistance(double lat1, double lon1, double lat2, double lon2) {
+        return positionsProxy.calculateDistance(lat1, lon1, lat2, lon2);
     }
 
 

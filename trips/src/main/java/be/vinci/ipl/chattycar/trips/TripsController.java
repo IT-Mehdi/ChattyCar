@@ -1,7 +1,6 @@
 package be.vinci.ipl.chattycar.trips;
 
 import be.vinci.ipl.chattycar.trips.models.NewTrip;
-import be.vinci.ipl.chattycar.trips.models.PositionTrip;
 import be.vinci.ipl.chattycar.trips.models.Trip;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
@@ -39,20 +38,7 @@ public class TripsController {
                                   @RequestParam(value = "destinationLon", required = false) Double destinationLon) {
         Iterable<Trip> response = service.readAll();
 
-        Comparator<Trip> positionComparator = (t1, t2) -> {
-
-            double distanceT1 = service.calculateDistance(t1);
-            double distanceT2 = service.calculateDistance(t2);
-
-            if (distanceT1 == distanceT2)
-                return 0;
-            else if (distanceT1 > distanceT2)
-                return -1;
-            else
-                return 1;
-        };
-
-        SortedMap<Trip, Double> trips = new TreeMap<>(positionComparator);
+        HashMap<Trip, Double> trips = new HashMap<>();
 
         for(Trip t : response) {
             if(t.getAvailableSeating() > 0) {
@@ -62,13 +48,14 @@ public class TripsController {
                     }
                 }
                 else if(originLat != null && originLon != null && destinationLat != null && destinationLon != null) {
-                    trips.put(t, service.calculateDistance(t) + service.calculateDistance(t)); //A verifier
+                    trips.put(t, service.calculateDistance(originLat, originLon, t.getOrigin().getLatitude(), t.getOrigin().getLongitude())
+                            + service.calculateDistance(destinationLat, destinationLon, t.getDestination().getLatitude(), t.getDestination().getLongitude())); //A verifier
                 }
                 else if(originLat != null && originLon != null) {
-                    trips.put(t, service.calculateDistance(t));
+                    trips.put(t, service.calculateDistance(originLat, originLon, t.getOrigin().getLatitude(), t.getOrigin().getLongitude()));
                 }
                 else if(destinationLat != null && destinationLon != null) {
-                    trips.put(t, service.calculateDistance(t));
+                    trips.put(t, service.calculateDistance(destinationLat, destinationLon, t.getDestination().getLatitude(), t.getDestination().getLongitude()));
                 }
                 else {
                     trips.put(t, -1.0);
@@ -76,23 +63,37 @@ public class TripsController {
             }
         }
 
-        ArrayList<Trip> sortedTrips = new ArrayList<>(trips.keySet());
-
         if(departureDate != null) {
+            ArrayList<Trip> sortedTrips = new ArrayList<>(trips.keySet());
             return sortedTrips.stream().limit(20).toList();
         }
         else if(originLat != null && originLon != null && destinationLat != null && destinationLon != null) {
-            return sortedTrips.stream().limit(20).toList();
+            return sortedTripsByDistance(trips);
         }
         else if(originLat != null && originLon != null) {
-            return sortedTrips.stream().limit(20).toList();
+            return sortedTripsByDistance(trips);
         }
         else if(destinationLat != null && destinationLon != null) {
-            return sortedTrips.stream().limit(20).toList();
+            return sortedTripsByDistance(trips);
         }
         else {
+            ArrayList<Trip> sortedTrips = new ArrayList<>(trips.keySet());
             return sortedTrips.stream().sorted(Comparator.comparingInt(Trip::getId).reversed()).limit(20).toList();
         }
+    }
+
+    /**
+     * Take a map of trip with the distance and return a list sorted by distance limit to 20
+     * @param trips the map of trip with the distance
+     * @return a list sorted by distance limit to 20
+     */
+    private Iterable<Trip> sortedTripsByDistance(HashMap<Trip, Double> trips) {
+        SortedMap<Double, Trip> sortedMapTrips = new TreeMap<>();
+        for(Map.Entry<Trip, Double> entry : trips.entrySet()) {
+            sortedMapTrips.put(entry.getValue(), entry.getKey());
+        }
+        ArrayList<Trip> sortedTrips = new ArrayList<>(sortedMapTrips.values());
+        return sortedTrips.stream().limit(20).toList();
     }
 
     @GetMapping("/trips/{id}")
@@ -115,7 +116,6 @@ public class TripsController {
         return service.readAllTripOfTheDriver(id);
     }
 
-    //Probleme renvoie erreur 500
     @DeleteMapping("/trips/driver/{id}")
     public void deleteByDrivers(@PathVariable int id) {
         boolean found = service.deleteByDriverId(id);

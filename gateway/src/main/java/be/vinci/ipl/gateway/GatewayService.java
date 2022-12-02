@@ -113,13 +113,15 @@ public class GatewayService {
    * @param id the user's id
    */
   public void deleteUser(@PathVariable int id) {
-    Iterable<Trip> trip = tripsProxy.readTripsByDriver(id);
-    for (Trip t : trip) {
-      inscriptionProxy.deleteAllPassengersTrip(t.getId());
-      notificationProxy.deleteTripNotification(t.getId());
-    }
-    tripsProxy.deleteTripsByDriver(id);
-    notificationProxy.deleteUserNotifications(id);
+    try {
+      Iterable<Trip> trip = tripsProxy.readTripsByDriver(id);
+      for (Trip t : trip) {
+        inscriptionProxy.deleteAllPassengersTrip(t.getId());
+        notificationProxy.deleteTripNotification(t.getId());
+      }
+      tripsProxy.deleteTripsByDriver(id);
+      notificationProxy.deleteUserNotifications(id);
+    }catch (Exception ignored){};
     User userEmail = readUserById(id);
     authenticationProxy.deleteCredentials(userEmail.getEmail());
     usersProxy.deleteUser(id);

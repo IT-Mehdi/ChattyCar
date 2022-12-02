@@ -4,8 +4,8 @@ Content-Type: application/json
 
 {
   "email": "1@Car",
-  "first_name": "1",
-  "last_name": "1"
+  "firstname": "1",
+  "lastname": "1"
 }
 
 ### Create user 2
@@ -14,8 +14,8 @@ Content-Type: application/json
 
 {
   "email": "2@Car",
-  "first_name": "2",
-  "last_name": "2"
+  "firstname": "2",
+  "lastname": "2"
 }
 
 ### Create user 3
@@ -24,8 +24,8 @@ Content-Type: application/json
 
 {
   "email": "3@Car",
-  "first_name": "2",
-  "last_name": "2"
+  "firstname": "2",
+  "lastname": "2"
 }
 
 ### Get user by id

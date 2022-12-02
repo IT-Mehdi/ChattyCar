@@ -1,24 +1,30 @@
 package be.vinci.ipl.chattycar.trips;
 
+import be.vinci.ipl.chattycar.trips.data.PositionsProxy;
+import be.vinci.ipl.chattycar.trips.data.TripsRepository;
+import be.vinci.ipl.chattycar.trips.models.NewTrip;
+import be.vinci.ipl.chattycar.trips.models.PositionTrip;
+import be.vinci.ipl.chattycar.trips.models.Trip;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 public class TripsService {
 
     private final TripsRepository repository;
 
-    public TripsService(TripsRepository repository) {
+    private final PositionsProxy positionsProxy;
+
+    public TripsService(TripsRepository repository, PositionsProxy positionsProxy) {
         this.repository = repository;
+        this.positionsProxy = positionsProxy;
     }
 
     /**
      * Creates a newTrip in repository
      * @param newTrip the newTrip to create
      */
-    public void createOne(NewTrip newTrip) {
-        repository.save(newTrip.toTrip());
+    public Trip createOne(NewTrip newTrip) {
+        return repository.save(newTrip.toTrip());
     }
 
     /**
@@ -75,6 +81,10 @@ public class TripsService {
 
     public void updateAvailableSeating(Trip tripUpdated) {
         repository.save(tripUpdated);
+    }
+
+    public double calculateDistance(Trip t) {
+        return positionsProxy.calculateDistance(t.getOrigin().getLatitude(), t.getOrigin().getLongitude(), t.getDestination().getLatitude(), t.getDestination().getLongitude());
     }
 
 

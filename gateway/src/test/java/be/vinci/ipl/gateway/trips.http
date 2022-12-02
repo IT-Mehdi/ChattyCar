@@ -44,6 +44,3 @@ Authorization: {{token}}
 ### Read all of driver
 GET http://localhost:8080/users/2/driver
 Authorization: {{token}}
-
-### Delete all trips of driver
-DELETE http://localhost:8080/trips/driver/1

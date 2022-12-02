@@ -1,13 +1,16 @@
 package be.vinci.ipl.chattycar.trips;
 
+import be.vinci.ipl.chattycar.trips.models.NewTrip;
+import be.vinci.ipl.chattycar.trips.models.PositionTrip;
+import be.vinci.ipl.chattycar.trips.models.Trip;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Comparator;
+import java.util.*;
 
 @RestController
 public class TripsController {
@@ -19,49 +22,76 @@ public class TripsController {
     }
 
     @PostMapping("/trips")
-    public ResponseEntity<NewTrip> createOne(@RequestBody NewTrip newTrip) {
+    public ResponseEntity<Trip> createOne(@RequestBody NewTrip newTrip) {
         if (newTrip.getDestination() == null || newTrip.getOrigin() == null
                 || newTrip.getDeparture() == null || newTrip.getDriverId() < 0) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
-        service.createOne(newTrip);
-        return new ResponseEntity<>(newTrip, HttpStatus.CREATED);
+        Trip tripCreated = service.createOne(newTrip);
+        return new ResponseEntity<>(tripCreated, HttpStatus.CREATED);
     }
 
     @GetMapping("/trips")
-    public Iterable<Trip> readAll(@RequestParam(value = "departure_date", required = false) LocalDate departureDate,
-                                  @RequestParam(required = false) Double originLat,
-                                  @RequestParam(required = false) Double originLon,
-                                  @RequestParam(required = false) Double destinationLat,
-                                  @RequestParam(required = false) Double destinationLon) {
+    public Iterable<Trip> readAll(@RequestParam(value = "departureDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate departureDate,
+                                  @RequestParam(value = "originLat", required = false) Double originLat,
+                                  @RequestParam(value = "originLon", required = false) Double originLon,
+                                  @RequestParam(value = "destinationLat", required = false) Double destinationLat,
+                                  @RequestParam(value = "destinationLon", required = false) Double destinationLon) {
         Iterable<Trip> response = service.readAll();
-        ArrayList<Trip> trips = new ArrayList<>();
+
+        Comparator<Trip> positionComparator = (t1, t2) -> {
+
+            double distanceT1 = service.calculateDistance(t1);
+            double distanceT2 = service.calculateDistance(t2);
+
+            if (distanceT1 == distanceT2)
+                return 0;
+            else if (distanceT1 > distanceT2)
+                return -1;
+            else
+                return 1;
+        };
+
+        SortedMap<Trip, Double> trips = new TreeMap<>(positionComparator);
 
         for(Trip t : response) {
             if(t.getAvailableSeating() > 0) {
-                if(departureDate != null && departureDate.isEqual(t.getDeparture())) {
-                    trips.add(t);
+                if(departureDate != null) {
+                    if(departureDate.isEqual(t.getDeparture())) {
+                        trips.put(t, -1.0);
+                    }
+                }
+                else if(originLat != null && originLon != null && destinationLat != null && destinationLon != null) {
+                    trips.put(t, service.calculateDistance(t) + service.calculateDistance(t)); //A verifier
+                }
+                else if(originLat != null && originLon != null) {
+                    trips.put(t, service.calculateDistance(t));
+                }
+                else if(destinationLat != null && destinationLon != null) {
+                    trips.put(t, service.calculateDistance(t));
                 }
                 else {
-                    trips.add(t);
+                    trips.put(t, -1.0);
                 }
             }
         }
 
+        ArrayList<Trip> sortedTrips = new ArrayList<>(trips.keySet());
+
         if(departureDate != null) {
-            return trips.stream().limit(20).toList();
+            return sortedTrips.stream().limit(20).toList();
         }
         else if(originLat != null && originLon != null && destinationLat != null && destinationLon != null) {
-            return trips;
+            return sortedTrips.stream().limit(20).toList();
         }
         else if(originLat != null && originLon != null) {
-            return trips;
+            return sortedTrips.stream().limit(20).toList();
         }
         else if(destinationLat != null && destinationLon != null) {
-            return trips;
+            return sortedTrips.stream().limit(20).toList();
         }
         else {
-            return trips.stream().sorted(Comparator.comparingInt(Trip::getId).reversed()).limit(20).toList();
+            return sortedTrips.stream().sorted(Comparator.comparingInt(Trip::getId).reversed()).limit(20).toList();
         }
     }
 
@@ -101,7 +131,5 @@ public class TripsController {
         service.updateAvailableSeating(tripUpdated);
         return tripUpdated;
     }
-
-
 
 }

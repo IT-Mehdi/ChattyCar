@@ -9,9 +9,6 @@ import javax.transaction.Transactional;
 @Repository
 public interface TripsRepository extends CrudRepository<Trip, Integer> {
 
-    //On peut ajouter des fonctions qui ne sont pas liés à l'id ici
-    //@Transactionnal pour les fonctions DELETE
-
     Iterable<Trip> findByDriverId(int driverId);
 
     @Transactional

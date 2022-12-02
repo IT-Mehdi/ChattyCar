@@ -31,7 +31,7 @@ public class Trip {
     })
     private Position destination;
 
-    private LocalDate departure; //Si on veut utiliser ce param dans une route utilsier notation
+    private LocalDate departure;
 
     @JsonProperty("driver_id")
     @Column(name =  "driver_id")
